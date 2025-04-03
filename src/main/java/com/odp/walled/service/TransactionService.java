@@ -2,6 +2,7 @@ package com.odp.walled.service;
 
 import com.odp.walled.dto.TransactionRequest;
 import com.odp.walled.dto.TransactionResponse;
+import com.odp.walled.dto.WalletSummaryDTO;
 import com.odp.walled.exception.InsufficientBalanceException;
 import com.odp.walled.exception.ResourceNotFound;
 import com.odp.walled.mapper.TransactionMapper;
@@ -12,6 +13,7 @@ import com.odp.walled.repository.TransactionRepository;
 import com.odp.walled.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -70,5 +72,15 @@ public class TransactionService {
         Transaction transaction = transactionRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFound("Transaction not found"));
         return transactionMapper.toResponse(transaction);
+    }
+
+    public WalletSummaryDTO getWalletSummary(Long walletId) {
+        BigDecimal totalIncome = transactionRepository.getTotalIncome(walletId);
+        BigDecimal totalOutcome = transactionRepository.getTotalOutcome(walletId);
+        BigDecimal balance = walletRepository.findById(walletId)
+                .map(Wallet::getBalance)
+                .orElse(BigDecimal.ZERO);
+
+        return new WalletSummaryDTO(totalIncome, totalOutcome, balance);
     }
 }

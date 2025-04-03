@@ -2,6 +2,7 @@ package com.odp.walled.controller;
 
 import com.odp.walled.dto.TransactionRequest;
 import com.odp.walled.dto.TransactionResponse;
+import com.odp.walled.dto.WalletSummaryDTO;
 import com.odp.walled.service.TransactionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,5 +34,10 @@ public class TransactionController {
     @GetMapping("/{id}")
     public TransactionResponse getTransactionByID(@PathVariable Long id) {
         return transactionService.getTransactionByID(id);
+    }
+
+    @GetMapping("/summary/{walletId}")
+    public ResponseEntity<WalletSummaryDTO> getWalletSummary(@PathVariable Long walletId) {
+        return ResponseEntity.ok(transactionService.getWalletSummary(walletId));
     }
 }
