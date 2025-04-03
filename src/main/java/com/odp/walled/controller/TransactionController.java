@@ -28,4 +28,9 @@ public class TransactionController {
             @RequestParam Long walletId) {
         return transactionService.getTransactionsByWallet(walletId);
     }
+
+    @GetMapping("/{id}")
+    public TransactionResponse getTransactionByID(@PathVariable Long id) {
+        return transactionService.getTransactionByID(id);
+    }
 }

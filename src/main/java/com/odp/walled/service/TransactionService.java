@@ -65,4 +65,10 @@ public class TransactionService {
                 .map(transactionMapper::toResponse)
                 .toList();
     }
+
+    public TransactionResponse getTransactionByID(Long id) {
+        Transaction transaction = transactionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFound("Transaction not found"));
+        return transactionMapper.toResponse(transaction);
+    }
 }
