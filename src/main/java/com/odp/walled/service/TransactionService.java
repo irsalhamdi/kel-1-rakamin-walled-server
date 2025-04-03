@@ -14,8 +14,14 @@ import com.odp.walled.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -83,4 +89,58 @@ public class TransactionService {
 
         return new WalletSummaryDTO(totalIncome, totalOutcome, balance);
     }
+
+    public Page<TransactionResponse> getTransactionHistory(
+            String typeStr,
+            String timeRange,
+            LocalDateTime startDate,
+            LocalDateTime endDate,
+            Long walletId,
+            int page,
+            int size,
+            String sortBy,
+            String order) {
+
+        if (timeRange != null && !timeRange.isBlank()) {
+            LocalDateTime now = LocalDateTime.now();
+            switch (timeRange.toUpperCase()) {
+                case "TODAY" -> {
+                    startDate = now.toLocalDate().atStartOfDay();
+                    endDate = now.toLocalDate().atTime(23, 59, 59);
+                }
+                case "YESTERDAY" -> {
+                    LocalDateTime yesterday = now.minusDays(1);
+                    startDate = yesterday.toLocalDate().atStartOfDay();
+                    endDate = yesterday.toLocalDate().atTime(23, 59, 59);
+                }
+                case "THIS_WEEK" -> {
+                    LocalDate today = now.toLocalDate();
+                    startDate = today.with(java.time.DayOfWeek.MONDAY).atStartOfDay();
+                    endDate = today.with(java.time.DayOfWeek.SUNDAY).atTime(23, 59, 59);
+                }
+                case "THIS_MONTH" -> {
+                    LocalDate today = now.toLocalDate();
+                    startDate = today.withDayOfMonth(1).atStartOfDay();
+                    endDate = today.withDayOfMonth(today.lengthOfMonth()).atTime(23, 59, 59);
+                }
+                case "ALL_TIME" -> {
+                    startDate = null;
+                    endDate = null;
+                }
+            }
+        }
+
+        Pageable pageable = PageRequest.of(page, size,
+                order.equalsIgnoreCase("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending());
+
+        TransactionType type = null;
+        if (typeStr != null && !typeStr.isBlank()) {
+            type = TransactionType.valueOf(typeStr.toUpperCase());
+        }
+
+        return transactionRepository
+                .findFilteredTransactions(type, startDate, endDate, walletId, pageable)
+                .map(TransactionResponse::fromEntity);
+    }
+
 }
