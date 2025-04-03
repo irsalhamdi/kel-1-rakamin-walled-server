@@ -36,13 +36,19 @@ public class AuthService {
                 .fullname(request.getFullname())
                 .phoneNumber(request.getPhoneNumber())
                 .username(request.getUsername())
+                .avatarUrl(request.getAvatarUrl())
                 .build();
         userRepository.save(user);
 
         return new RegisterResponse(
                 "User registered successfully",
                 user.getId().toString(),
-                user.getEmail());
+                user.getEmail(),
+                user.getFullname(),
+                user.getPhoneNumber(),
+                user.getUsername(),
+                user.getAvatarUrl()
+        );
     }
 
     public LoginResponse login(LoginRequest request) {

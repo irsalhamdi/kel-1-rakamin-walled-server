@@ -1,7 +1,9 @@
 package com.odp.walled.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Null;
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 @Data
 public class RegisterRequest {
@@ -15,4 +17,6 @@ public class RegisterRequest {
     private String phoneNumber;
     @NotBlank(message = "Username is required")
     private String username;
+    @Nullable
+    private String avatarUrl;
 }
