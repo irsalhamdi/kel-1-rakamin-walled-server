@@ -28,6 +28,8 @@ public class RegisterRequest {
 
     @NotBlank(message = "Username is required")
     private String username;
+
     @Nullable
+    @Pattern(regexp = "^(http://).*$", message = "Avatar URL must start with http://")
     private String avatarUrl;
 }
