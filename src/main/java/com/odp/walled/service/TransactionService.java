@@ -49,6 +49,7 @@ public class TransactionService {
         transaction.setTransactionType(request.getTransactionType());
         transaction.setAmount(request.getAmount());
         transaction.setDescription(request.getDescription());
+        transaction.setOption(request.getOption());
 
         if (request.getTransactionType() == TransactionType.TRANSFER) {
             Wallet recipient = walletRepository.findByAccountNumber(request.getRecipientAccountNumber())

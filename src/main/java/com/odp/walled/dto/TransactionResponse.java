@@ -15,6 +15,7 @@ public class TransactionResponse {
     private Long recipientWalletId;
     private LocalDateTime transactionDate;
     private String description;
+    private String option;
 
     public static TransactionResponse fromEntity(Transaction tx) {
         TransactionResponse res = new TransactionResponse();
@@ -26,6 +27,7 @@ public class TransactionResponse {
                 tx.getRecipientWallet() != null ? tx.getRecipientWallet().getId() : null);
         res.setTransactionDate(tx.getTransactionDate());
         res.setDescription(tx.getDescription());
+        res.setOption(tx.getOption());
         return res;
     }
 }
