@@ -1,11 +1,13 @@
 package com.odp.walled.controller;
 
 import com.odp.walled.dto.WalletResponse;
+import com.odp.walled.model.Wallet;
 import com.odp.walled.service.WalletService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/wallets")
@@ -24,8 +26,8 @@ public class WalletController {
         return walletService.getWalletById(id);
     }
 
-    // @GetMapping("/me")
-    // public WalletResponse getMyWallets() {
-    // return walletService.getMyWallets();
-    // }
+    @GetMapping("/user/{userId}")
+    public List<Wallet> getWalletsByUserId(@PathVariable Long userId) {
+        return walletService.getWalletsByUserId(userId);
+    }
 }

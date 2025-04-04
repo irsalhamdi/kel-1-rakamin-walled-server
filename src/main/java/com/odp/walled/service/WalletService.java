@@ -8,7 +8,7 @@ import com.odp.walled.model.Wallet;
 import com.odp.walled.repository.UserRepository;
 import com.odp.walled.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
-
+import java.util.List;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.Random;
@@ -43,5 +43,9 @@ public class WalletService {
         Wallet wallet = walletRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFound("Wallet not found"));
         return walletMapper.toResponse(wallet);
+    }
+
+    public List<Wallet> getWalletsByUserId(Long userId) {
+        return walletRepository.findByUserId(userId);
     }
 }
