@@ -36,4 +36,26 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     @Query("SELECT COALESCE(SUM(t.amount), 0) FROM Transaction t WHERE t.transactionType = 'TRANSFER' AND t.wallet.id = :walletId")
     BigDecimal getTotalOutcome(@Param("walletId") Long walletId);
 
+    @Query("""
+                        SELECT COALESCE(SUM(t.amount), 0)
+                        FROM Transaction t
+                        WHERE
+                            (
+                                (t.transactionType = 'TOP_UP' AND t.wallet.id = :walletId)
+                                OR
+                                (t.transactionType = 'TRANSFER' AND t.recipientWallet.id = :walletId)
+                            )
+                            AND t.transactionDate BETWEEN :start AND :end
+                    """)
+    BigDecimal sumIncome(Long walletId, LocalDateTime start, LocalDateTime end);
+
+    @Query("""
+                        SELECT COALESCE(SUM(t.amount), 0)
+                        FROM Transaction t
+                        WHERE
+                            t.transactionType = 'TRANSFER'
+                            AND t.wallet.id = :walletId
+                            AND t.transactionDate BETWEEN :start AND :end
+                    """)
+    BigDecimal sumOutcome(Long walletId, LocalDateTime start, LocalDateTime end);
 }

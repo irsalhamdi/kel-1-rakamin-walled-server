@@ -1,5 +1,8 @@
 package com.odp.walled.service;
 
+import com.odp.walled.dto.BalanceGraphRequest;
+import com.odp.walled.dto.BalanceGraphResponse;
+import com.odp.walled.dto.BalanceGraphResult;
 import com.odp.walled.dto.TransactionRequest;
 import com.odp.walled.dto.TransactionResponse;
 import com.odp.walled.dto.WalletSummaryDTO;
@@ -13,9 +16,13 @@ import com.odp.walled.repository.TransactionRepository;
 import com.odp.walled.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Comparator;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -143,4 +150,105 @@ public class TransactionService {
                 .map(TransactionResponse::fromEntity);
     }
 
+    public BalanceGraphResult getGraph(BalanceGraphRequest request) {
+        List<BalanceGraphResponse> rawData;
+
+        switch (request.getView().toLowerCase()) {
+            case "weekly" -> rawData = getWeeklyGraph(request);
+            case "monthly" -> rawData = getMonthlyGraph(request);
+            case "quartal" -> rawData = getQuarterlyGraph(request);
+            default -> throw new IllegalArgumentException("Unsupported view type");
+        }
+
+        // Cari nilai maksimum untuk persentase
+        BigDecimal max = rawData.stream()
+                .flatMap(d -> List.of(d.getIncome(), d.getOutcome()).stream())
+                .max(Comparator.naturalOrder())
+                .orElse(BigDecimal.ZERO);
+
+        // Hitung persen
+        for (BalanceGraphResponse d : rawData) {
+            d.setIncomePercent(max.compareTo(BigDecimal.ZERO) == 0 ? 0
+                    : d.getIncome().divide(max, 4, RoundingMode.HALF_UP).doubleValue() * 100);
+            d.setOutcomePercent(max.compareTo(BigDecimal.ZERO) == 0 ? 0
+                    : d.getOutcome().divide(max, 4, RoundingMode.HALF_UP).doubleValue() * 100);
+        }
+
+        return new BalanceGraphResult(
+                request.getWalletId(),
+                request.getView(),
+                request.getYear(),
+                request.getView().equalsIgnoreCase("weekly") ? request.getMonth() : null,
+                max,
+                rawData);
+    }
+
+    private List<BalanceGraphResponse> getWeeklyGraph(BalanceGraphRequest request) {
+        List<BalanceGraphResponse> result = new ArrayList<>();
+        int year = request.getYear();
+        int monthValue = Integer.parseInt(request.getMonth());
+        LocalDate firstDay = LocalDate.of(year, monthValue, 1);
+        int lastDay = firstDay.lengthOfMonth();
+
+        int[] startDays = { 1, 9, 17, 25 };
+        int[] endDays = { 8, 16, 24, lastDay };
+
+        for (int i = 0; i < 4; i++) {
+            LocalDate start = LocalDate.of(year, monthValue, startDays[i]);
+            LocalDate end = LocalDate.of(year, monthValue, endDays[i]);
+
+            BigDecimal income = transactionRepository.sumIncome(request.getWalletId(), start.atStartOfDay(),
+                    end.atTime(23, 59));
+            BigDecimal outcome = transactionRepository.sumOutcome(request.getWalletId(), start.atStartOfDay(),
+                    end.atTime(23, 59));
+
+            result.add(new BalanceGraphResponse(startDays[i] + " - " + endDays[i], income, outcome, 0, 0));
+        }
+        return result;
+    }
+
+    private List<BalanceGraphResponse> getMonthlyGraph(BalanceGraphRequest request) {
+        List<BalanceGraphResponse> result = new ArrayList<>();
+        int year = request.getYear();
+
+        for (int month = 1; month <= 12; month++) {
+            YearMonth ym = YearMonth.of(year, month);
+            LocalDate start = ym.atDay(1);
+            LocalDate end = ym.atEndOfMonth();
+
+            BigDecimal income = transactionRepository.sumIncome(request.getWalletId(), start.atStartOfDay(),
+                    end.atTime(23, 59));
+            BigDecimal outcome = transactionRepository.sumOutcome(request.getWalletId(), start.atStartOfDay(),
+                    end.atTime(23, 59));
+
+            result.add(new BalanceGraphResponse(ym.getMonth().toString().substring(0, 3), income, outcome, 0, 0));
+        }
+        return result;
+    }
+
+    private List<BalanceGraphResponse> getQuarterlyGraph(BalanceGraphRequest request) {
+        List<BalanceGraphResponse> result = new ArrayList<>();
+        int year = request.getYear();
+        String[] labels = { "Jan - Mar", "Apr - Jun", "Jul - Sep", "Oct - Dec" };
+
+        int[][] ranges = {
+                { 1, 3 },
+                { 4, 6 },
+                { 7, 9 },
+                { 10, 12 }
+        };
+
+        for (int i = 0; i < 4; i++) {
+            LocalDate start = LocalDate.of(year, ranges[i][0], 1);
+            LocalDate end = YearMonth.of(year, ranges[i][1]).atEndOfMonth();
+
+            BigDecimal income = transactionRepository.sumIncome(request.getWalletId(), start.atStartOfDay(),
+                    end.atTime(23, 59));
+            BigDecimal outcome = transactionRepository.sumOutcome(request.getWalletId(), start.atStartOfDay(),
+                    end.atTime(23, 59));
+
+            result.add(new BalanceGraphResponse(labels[i], income, outcome, 0, 0));
+        }
+        return result;
+    }
 }

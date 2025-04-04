@@ -1,5 +1,8 @@
 package com.odp.walled.controller;
 
+import com.odp.walled.dto.BalanceGraphRequest;
+import com.odp.walled.dto.BalanceGraphResponse;
+import com.odp.walled.dto.BalanceGraphResult;
 import com.odp.walled.dto.TransactionRequest;
 import com.odp.walled.dto.TransactionResponse;
 import com.odp.walled.dto.WalletSummaryDTO;
@@ -59,4 +62,8 @@ public class TransactionController {
                 sortBy, order);
     }
 
+    @PostMapping("/graph")
+    public BalanceGraphResult getGraph(@RequestBody BalanceGraphRequest request) {
+        return transactionService.getGraph(request);
+    }
 }
