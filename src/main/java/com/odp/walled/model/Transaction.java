@@ -41,4 +41,7 @@ public class Transaction {
     private LocalDateTime transactionDate = LocalDateTime.now();
 
     private String description;
+
+    @Column(name = "option")
+    private String option;
 }
