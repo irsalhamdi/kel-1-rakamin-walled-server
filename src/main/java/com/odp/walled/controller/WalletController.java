@@ -30,4 +30,9 @@ public class WalletController {
     public List<Wallet> getWalletsByUserId(@PathVariable Long userId) {
         return walletService.getWalletsByUserId(userId);
     }
+
+    @GetMapping
+    public List<Wallet> getAllWallets() {
+        return walletService.getAllWallets();
+    }
 }
