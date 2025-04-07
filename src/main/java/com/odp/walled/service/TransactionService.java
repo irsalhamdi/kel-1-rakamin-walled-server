@@ -1,5 +1,6 @@
 package com.odp.walled.service;
 
+import org.springframework.mail.javamail.JavaMailSender;
 import com.odp.walled.dto.BalanceGraphRequest;
 import com.odp.walled.dto.BalanceGraphResponse;
 import com.odp.walled.dto.BalanceGraphResult;
@@ -25,6 +26,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -38,6 +40,9 @@ public class TransactionService {
     private final WalletRepository walletRepository;
     private final TransactionRepository transactionRepository;
     private final TransactionMapper transactionMapper;
+
+    @Autowired
+    private final EmailService emailService;
 
     @Transactional
     public TransactionResponse processTransaction(TransactionRequest request) {
@@ -79,6 +84,10 @@ public class TransactionService {
         }
 
         walletRepository.save(wallet);
+
+        String email = wallet.getUser().getEmail();
+        emailService.sendTransactionSuccessEmail(email, transaction);
+
         return transactionMapper.toResponse(transactionRepository.save(transaction));
     }
 
