@@ -44,6 +44,14 @@ public class TransactionService {
         Wallet wallet = walletRepository.findById(request.getWalletId())
                 .orElseThrow(() -> new ResourceNotFound("Wallet not found"));
 
+        BigDecimal amount = request.getAmount();
+        BigDecimal minAmount = BigDecimal.valueOf(10_000);
+        BigDecimal maxAmount = BigDecimal.valueOf(2_000_000);
+
+        if (amount.compareTo(minAmount) < 0 || amount.compareTo(maxAmount) > 0) {
+            throw new IllegalArgumentException("Transaction amount must be between Rp10,000 - Rp2,000,000");
+        }
+
         Transaction transaction = new Transaction();
         transaction.setWallet(wallet);
         transaction.setTransactionType(request.getTransactionType());
