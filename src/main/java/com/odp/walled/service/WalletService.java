@@ -57,4 +57,8 @@ public class WalletService {
     public List<Wallet> getWalletsByUserId(Long userId) {
         return walletRepository.findByUserId(userId);
     }
+
+    public List<Wallet> getAllWallets() {
+        return walletRepository.findAll();
+    }
 }
