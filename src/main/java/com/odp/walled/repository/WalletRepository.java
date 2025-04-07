@@ -1,5 +1,6 @@
 package com.odp.walled.repository;
 
+import com.odp.walled.model.User;
 import com.odp.walled.model.Wallet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -14,4 +15,6 @@ public interface WalletRepository extends JpaRepository<Wallet, Long> {
     List<Wallet> findAllByUserId(Long userId);
 
     List<Wallet> findByUserId(Long userId);
+
+    Optional<Wallet> findByUser(User user);
 }

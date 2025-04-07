@@ -1,6 +1,7 @@
 package com.odp.walled.service;
 
 import com.odp.walled.dto.WalletResponse;
+import com.odp.walled.exception.DuplicateException;
 import com.odp.walled.exception.ResourceNotFound;
 import com.odp.walled.mapper.WalletMapper;
 import com.odp.walled.model.User;
@@ -9,6 +10,8 @@ import com.odp.walled.repository.UserRepository;
 import com.odp.walled.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.Random;
@@ -23,6 +26,12 @@ public class WalletService {
     public WalletResponse createWallet(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFound("User not found"));
+
+        Optional<Wallet> existingWallet = walletRepository.findByUser(user);
+        if (existingWallet.isPresent()) {
+            throw new DuplicateException("User already has a wallet");
+        }
+
         Wallet wallet = new Wallet();
         wallet.setUser(user);
         wallet.setAccountNumber(generateUniqueAccountNumber());
@@ -47,5 +56,9 @@ public class WalletService {
 
     public List<Wallet> getWalletsByUserId(Long userId) {
         return walletRepository.findByUserId(userId);
+    }
+
+    public List<Wallet> getAllWallets() {
+        return walletRepository.findAll();
     }
 }
