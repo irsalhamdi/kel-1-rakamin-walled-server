@@ -57,7 +57,7 @@ public class TransactionController {
     }
 
     @GetMapping("/filter")
-    public Page<TransactionResponse> getTransactionHistory(
+    public ResponseEntity<APIResponse<Page<TransactionResponse>>> getTransactionHistory(
             @RequestParam(required = false) Long walletId,
             @RequestParam(required = false) String type,
             @RequestParam(required = false) String timeRange,
@@ -67,9 +67,12 @@ public class TransactionController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "transactionDate") String sortBy,
             @RequestParam(defaultValue = "desc") String order) {
-        return transactionService.getTransactionHistory(type, timeRange, startDate, endDate, walletId, page, size,
-                sortBy, order);
+        Page<TransactionResponse> data = transactionService.getTransactionHistory(
+                type, timeRange, startDate, endDate, walletId, page, size, sortBy, order);
+
+        return ResponseEntity.ok(new APIResponse<>("success", "Transaction history retrieved", data));
     }
+
 
     @PostMapping("/graph")
     public ResponseEntity<APIResponse<BalanceGraphResult>> getGraph(@RequestBody BalanceGraphRequest request) {
