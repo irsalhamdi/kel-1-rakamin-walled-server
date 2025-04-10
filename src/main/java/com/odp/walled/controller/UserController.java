@@ -1,5 +1,6 @@
 package com.odp.walled.controller;
 
+import com.odp.walled.dto.APIResponse;
 import com.odp.walled.dto.BaseResponse;
 import com.odp.walled.dto.UserRequest;
 import com.odp.walled.dto.UserResponse;
@@ -17,25 +18,26 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse createUser(@Valid @RequestBody UserRequest request) {
-        return userService.createUser(request);
+    public ResponseEntity<APIResponse<UserResponse>> createUser(@Valid @RequestBody UserRequest request) {
+        UserResponse data = userService.createUser(request);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new APIResponse<>("success", "User created successfully", data));
     }
 
     @GetMapping("/{id}")
-    public UserResponse getUserById(@PathVariable Long id) {
-        return userService.getUserById(id);
+    public ResponseEntity<APIResponse<UserResponse>> getUserById(@PathVariable Long id) {
+        UserResponse data = userService.getUserById(id);
+        return ResponseEntity.ok(new APIResponse<>("success", "User retrieved successfully", data));
     }
 
     @GetMapping("/me")
-    public ResponseEntity<BaseResponse<UserResponse>> getCurrentUser(Authentication authentication) {
+    public ResponseEntity<APIResponse<UserResponse>> getCurrentUser(Authentication authentication) {
         if (authentication == null || !authentication.isAuthenticated()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new APIResponse<>("error", "Unauthorized", null));
         }
 
-        UserResponse response = userService.getCurrentUser(authentication.getName());
-
-        return ResponseEntity.ok(new BaseResponse<UserResponse>("Success", response));
+        UserResponse data = userService.getCurrentUser(authentication.getName());
+        return ResponseEntity.ok(new APIResponse<>("success", "User profile retrieved", data));
     }
 }

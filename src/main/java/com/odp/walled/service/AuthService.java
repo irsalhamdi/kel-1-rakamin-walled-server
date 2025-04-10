@@ -8,6 +8,7 @@ import com.odp.walled.dto.LoginResponse;
 import com.odp.walled.dto.RegisterRequest;
 import com.odp.walled.dto.RegisterResponse;
 import com.odp.walled.exception.DuplicateException;
+import com.odp.walled.exception.ResourceNotFound;
 import com.odp.walled.model.User;
 import com.odp.walled.repository.UserRepository;
 import com.odp.walled.util.JwtUtils;
@@ -22,17 +23,16 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder; // Inject PasswordEncoder
 
-    private static JwtUtils jwtUtils;
+    private final JwtUtils jwtUtils;
 
     public RegisterResponse register(RegisterRequest request) {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new DuplicateException("Email already exists");
         }
 
-        // Encode the password
         User user = User.builder()
                 .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword())) // Encode password
+                .password(passwordEncoder.encode(request.getPassword()))
                 .fullname(request.getFullname())
                 .phoneNumber(request.getPhoneNumber())
                 .username(request.getUsername())
@@ -53,15 +53,13 @@ public class AuthService {
 
     public LoginResponse login(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new DuplicateException("User not found"));
+                .orElseThrow(() -> new ResourceNotFound("User not found"));
 
-        // Verify password
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new BadCredentialsException("Invalid password");
         }
 
-        // Generate JWT token
         String token = jwtUtils.generateToken(user.getEmail());
-        return new LoginResponse("Login successful", token);
+        return new LoginResponse(token);
     }
 }

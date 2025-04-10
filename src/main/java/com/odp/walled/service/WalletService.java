@@ -15,6 +15,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -39,6 +40,22 @@ public class WalletService {
         return walletMapper.toResponse(walletRepository.save(wallet));
     }
 
+    public WalletResponse getWalletById(Long id) {
+        Wallet wallet = walletRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFound("Wallet not found"));
+        return walletMapper.toResponse(wallet);
+    }
+
+    public List<WalletResponse> getWalletsByUserId(Long userId) {
+        List<Wallet> wallets = walletRepository.findByUserId(userId);
+        return walletMapper.toResponseList(wallets);
+
+    }
+
+    public List<WalletResponse> getAllWallets() {
+        return walletMapper.toResponseList(walletRepository.findAll());
+    }
+
     private String generateUniqueAccountNumber() {
         Random random = new Random();
         String accountNumber;
@@ -48,17 +65,4 @@ public class WalletService {
         return accountNumber;
     }
 
-    public WalletResponse getWalletById(Long id) {
-        Wallet wallet = walletRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFound("Wallet not found"));
-        return walletMapper.toResponse(wallet);
-    }
-
-    public List<Wallet> getWalletsByUserId(Long userId) {
-        return walletRepository.findByUserId(userId);
-    }
-
-    public List<Wallet> getAllWallets() {
-        return walletRepository.findAll();
-    }
 }

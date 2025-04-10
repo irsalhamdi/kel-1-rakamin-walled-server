@@ -15,6 +15,9 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.odp.walled.dto.APIResponse;
+
 import java.io.IOException;
 import java.security.Key;
 import java.util.List;
@@ -55,15 +58,25 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         username, null, List.of());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
-        } catch (SignatureException e) {
-            System.out.println("[DEBUG] Invalid JWT Signature - " + e.getMessage());
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid or expired JWT token.");
-            return;
-        }
 
-        filterChain.doFilter(request, response);
+            filterChain.doFilter(request, response);
+
+        } catch (io.jsonwebtoken.ExpiredJwtException e) {
+            sendErrorResponse(response, "JWT expired", HttpServletResponse.SC_UNAUTHORIZED);
+        } catch (io.jsonwebtoken.JwtException | IllegalArgumentException e) {
+            sendErrorResponse(response, "Invalid JWT token", HttpServletResponse.SC_UNAUTHORIZED);
+        }
     }
+
+    private void sendErrorResponse(HttpServletResponse response, String message, int statusCode) throws IOException {
+        response.setContentType("application/json");
+        response.setStatus(statusCode);
+
+    APIResponse<Object> apiResponse = new APIResponse<>("error", message, null);
+    ObjectMapper objectMapper = new ObjectMapper();
+    response.getWriter().write(objectMapper.writeValueAsString(apiResponse));
+}
+
 }

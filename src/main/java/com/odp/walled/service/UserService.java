@@ -39,12 +39,9 @@ public class UserService {
     }
 
     public UserResponse getCurrentUser(String email) {
-
-        // Find the user by email
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFound("User not found"));
 
-        // Convert to response DTO
         UserResponse response = new UserResponse(
                 user.getId(),
                 user.getEmail(),

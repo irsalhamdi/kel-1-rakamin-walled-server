@@ -1,5 +1,6 @@
 package com.odp.walled.controller;
 
+import com.odp.walled.dto.APIResponse;
 import com.odp.walled.dto.BalanceGraphRequest;
 import com.odp.walled.dto.BalanceGraphResult;
 import com.odp.walled.dto.TransactionRequest;
@@ -26,25 +27,33 @@ public class TransactionController {
     private final TransactionService transactionService;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public TransactionResponse createTransaction(@Valid @RequestBody TransactionRequest request) {
-        return transactionService.processTransaction(request);
+    public ResponseEntity<APIResponse<TransactionResponse>> createTransaction(
+            @Valid @RequestBody TransactionRequest request) {
+        TransactionResponse data = transactionService.processTransaction(request);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new APIResponse<>("success", "Transaction processed successfully", data));
     }
 
     @GetMapping
-    public List<TransactionResponse> getTransactionsByWallet(
+    public ResponseEntity<APIResponse<List<TransactionResponse>>> getTransactionsByWallet(
             @RequestParam Long walletId) {
-        return transactionService.getTransactionsByWallet(walletId);
+        List<TransactionResponse> data = transactionService.getTransactionsByWallet(walletId);
+        return ResponseEntity.ok(
+                new APIResponse<>("success", "Transactions retrieved successfully", data));
     }
+
 
     @GetMapping("/{id}")
-    public TransactionResponse getTransactionByID(@PathVariable Long id) {
-        return transactionService.getTransactionByID(id);
+    public ResponseEntity<APIResponse<TransactionResponse>> getTransactionByID(@PathVariable Long id) {
+        TransactionResponse data = transactionService.getTransactionByID(id);
+        return ResponseEntity.ok(new APIResponse<>("success", "Transaction retrieved successfully", data));
     }
 
+
     @GetMapping("/summary/{walletId}")
-    public ResponseEntity<WalletSummaryDTO> getWalletSummary(@PathVariable Long walletId) {
-        return ResponseEntity.ok(transactionService.getWalletSummary(walletId));
+    public ResponseEntity<APIResponse<WalletSummaryDTO>> getWalletSummary(@PathVariable Long walletId) {
+        WalletSummaryDTO data = transactionService.getWalletSummary(walletId);
+        return ResponseEntity.ok(new APIResponse<>("success", "Wallet summary retrieved successfully", data));
     }
 
     @GetMapping("/filter")

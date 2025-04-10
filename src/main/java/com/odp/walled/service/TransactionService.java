@@ -1,8 +1,5 @@
 package com.odp.walled.service;
 
-import org.springframework.mail.javamail.JavaMailSender;
-
-import com.lowagie.text.DocumentException;
 import com.odp.walled.dto.BalanceGraphRequest;
 import com.odp.walled.dto.BalanceGraphResponse;
 import com.odp.walled.dto.BalanceGraphResult;
@@ -19,7 +16,6 @@ import com.odp.walled.model.Wallet;
 import com.odp.walled.repository.TransactionRepository;
 import com.odp.walled.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
-import java.io.ByteArrayOutputStream;
 import java.util.Comparator;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -29,7 +25,6 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import com.odp.walled.service.HtmlToPdfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -37,7 +32,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.xhtmlrenderer.pdf.ITextRenderer;
 
 @Service
 @RequiredArgsConstructor
@@ -84,10 +78,8 @@ public class TransactionService {
             recipient.setBalance(recipient.getBalance().add(request.getAmount()));
             walletRepository.save(recipient);
 
-            // Set the recipient wallet
             transaction.setRecipientWallet(recipient);
         } else {
-            // TOP_UP
             wallet.setBalance(wallet.getBalance().add(request.getAmount()));
         }
 
@@ -102,9 +94,8 @@ public class TransactionService {
     public List<TransactionResponse> getTransactionsByWallet(Long walletId) {
         List<Transaction> transactions = transactionRepository
                 .findAllByWalletIdOrRecipientWalletId(walletId);
-        return transactions.stream()
-                .map(transactionMapper::toResponse)
-                .toList();
+        return transactionMapper.toResponseList(transactions);
+
     }
 
     public TransactionResponse getTransactionByID(Long id) {
