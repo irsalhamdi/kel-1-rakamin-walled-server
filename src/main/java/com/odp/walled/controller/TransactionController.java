@@ -72,8 +72,9 @@ public class TransactionController {
     }
 
     @PostMapping("/graph")
-    public BalanceGraphResult getGraph(@RequestBody BalanceGraphRequest request) {
-        return transactionService.getGraph(request);
+    public ResponseEntity<APIResponse<BalanceGraphResult>> getGraph(@RequestBody BalanceGraphRequest request) {
+        BalanceGraphResult result = transactionService.getGraph(request);
+        return ResponseEntity.ok(new APIResponse<>("success", "Graph data generated", result));
     }
 
     @GetMapping("/export-pdf/{id}")
