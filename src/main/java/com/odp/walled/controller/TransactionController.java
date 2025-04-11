@@ -1,7 +1,6 @@
 package com.odp.walled.controller;
 
 import com.odp.walled.dto.BalanceGraphRequest;
-import com.odp.walled.dto.BalanceGraphResponse;
 import com.odp.walled.dto.BalanceGraphResult;
 import com.odp.walled.dto.TransactionRequest;
 import com.odp.walled.dto.TransactionResponse;
@@ -9,9 +8,10 @@ import com.odp.walled.dto.WalletSummaryDTO;
 import com.odp.walled.service.TransactionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-
 import java.time.LocalDateTime;
 import java.util.List;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 
 import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -65,5 +65,15 @@ public class TransactionController {
     @PostMapping("/graph")
     public BalanceGraphResult getGraph(@RequestBody BalanceGraphRequest request) {
         return transactionService.getGraph(request);
+    }
+
+    @GetMapping("/export-pdf/{id}")
+    public ResponseEntity<byte[]> exportTransactionPdf(@PathVariable Long id) {
+        byte[] pdfBytes = transactionService.generateTransactionPdf(id);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=transaction-" + id + ".pdf")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(pdfBytes);
     }
 }
