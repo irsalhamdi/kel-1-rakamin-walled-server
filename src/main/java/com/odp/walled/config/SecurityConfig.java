@@ -42,7 +42,7 @@ public class SecurityConfig {
 
                 // Permit all for auth and H2 console
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/h2-console/**", "/error").permitAll()
+                        .requestMatchers("/api/auth/**", "/h2-console/**", "/error", "/api/wallets/**", "/api/users/**", "/api/transactions/**").permitAll()
                         .anyRequest().authenticated())
 
                 // Stateless session

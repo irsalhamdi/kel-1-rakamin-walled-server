@@ -41,6 +41,7 @@ public class TransactionResponse {
             res.setReceiverAccountNumber(tx.getRecipientWallet().getAccountNumber());
             res.setReceiverFullname(tx.getRecipientWallet().getUser().getFullname());
         }
+      
         return res;
     }
 }
