@@ -15,7 +15,10 @@ public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOrigins(List.of("http://localhost:8081", "http://192.168.22.38:8081")); // Allow frontend URL
+        corsConfig.setAllowedOrigins(
+                List.of("http://localhost:8081", "http://192.168.1.8:8081", "http://localhost:5173",
+                        "https://kelompok-1-ewalled-web.vercel.app")); // Allow frontend
+        // URL
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         corsConfig.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));
         corsConfig.setExposedHeaders(Arrays.asList("Authorization"));

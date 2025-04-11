@@ -1,6 +1,8 @@
 package com.odp.walled.service;
 
 import org.springframework.mail.javamail.JavaMailSender;
+
+import com.lowagie.text.DocumentException;
 import com.odp.walled.dto.BalanceGraphRequest;
 import com.odp.walled.dto.BalanceGraphResponse;
 import com.odp.walled.dto.BalanceGraphResult;
@@ -11,21 +13,23 @@ import com.odp.walled.exception.InsufficientBalanceException;
 import com.odp.walled.exception.ResourceNotFound;
 import com.odp.walled.mapper.TransactionMapper;
 import com.odp.walled.model.Transaction;
+import com.odp.walled.model.User;
 import com.odp.walled.model.Transaction.TransactionType;
 import com.odp.walled.model.Wallet;
 import com.odp.walled.repository.TransactionRepository;
 import com.odp.walled.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
-
+import java.io.ByteArrayOutputStream;
 import java.util.Comparator;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
+import com.odp.walled.service.HtmlToPdfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,6 +37,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
 @Service
 @RequiredArgsConstructor
@@ -43,6 +48,9 @@ public class TransactionService {
 
     @Autowired
     private final EmailService emailService;
+
+    @Autowired
+    private HtmlToPdfService htmlToPdfService;
 
     @Transactional
     public TransactionResponse processTransaction(TransactionRequest request) {
@@ -268,5 +276,31 @@ public class TransactionService {
             result.add(new BalanceGraphResponse(labels[i], income, outcome, 0, 0));
         }
         return result;
+    }
+
+    public byte[] generateTransactionPdf(Long id) {
+        Transaction trx = transactionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFound("Transaction not found"));
+
+        Wallet senderWallet = trx.getWallet();
+        Wallet recipientWallet = trx.getRecipientWallet();
+
+        User sender = senderWallet.getUser();
+        User recipient = recipientWallet != null ? recipientWallet.getUser() : null;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy - HH:mm");
+
+        String html = htmlToPdfService.buildHtml(
+                trx.getTransactionDate().format(formatter),
+                trx.getAmount().toPlainString(),
+                recipient != null ? recipient.getFullname() : "-",
+                recipient != null ? recipientWallet.getAccountNumber() : "-",
+                sender.getFullname(),
+                senderWallet.getAccountNumber(),
+                "TRX-" + trx.getId(),
+                trx.getDescription() != null ? trx.getDescription() : "-",
+                trx.getAmount().toPlainString());
+
+        return htmlToPdfService.generatePdfFromHtml(html);
     }
 }
