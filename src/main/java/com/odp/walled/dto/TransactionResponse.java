@@ -16,6 +16,8 @@ public class TransactionResponse {
     private LocalDateTime transactionDate;
     private String description;
     private String option;
+    private String senderName;
+    private String recipientName;
 
     public static TransactionResponse fromEntity(Transaction tx) {
         TransactionResponse res = new TransactionResponse();
@@ -28,6 +30,13 @@ public class TransactionResponse {
         res.setTransactionDate(tx.getTransactionDate());
         res.setDescription(tx.getDescription());
         res.setOption(tx.getOption());
+
+        // NEW DATA
+        res.setSenderName(tx.getWallet().getUser().getFullname());
+        if (tx.getRecipientWallet() != null && tx.getRecipientWallet().getUser() != null) {
+            res.setRecipientName(tx.getRecipientWallet().getUser().getFullname());
+        }
+
         return res;
     }
 }
