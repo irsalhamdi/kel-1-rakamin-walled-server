@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "764f82af-785b-4024-b5b9-687238f59303",
-		"name": "V2",
+		"name": "Walled",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "17369139",
 		"_collection_link": "https://blue-shadow-817996.postman.co/workspace/Walled-Final-Project~596ba7bd-e4cb-4402-af84-34422a6afa41/collection/17369139-764f82af-785b-4024-b5b9-687238f59303?action=share&source=collection_link&creator=17369139"
@@ -589,6 +589,278 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Login successful\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTAzNCwiZXhwIjoxNzQ0Mzc1NDM0fQ.-21Ojl0n8em-60rhgC_b6WseLfwSimZjEhnp3uPn7xA\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0",
+								"name": "content-length",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdC",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdC",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/auth/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Apr 2025 13:34:31 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Invalid JWT token\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDQ2NTAyMiwiZXhwIjoxNzQ0NTUxNDIyfQ.Cpxj4QiuWqovLWKdsZ4IrRsTB7MC_tnUwPUZIAKT1Jk",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/auth/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Apr 2025 13:37:22 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Logout berhasil\",\n    \"data\": null\n}"
 						}
 					]
 				}
