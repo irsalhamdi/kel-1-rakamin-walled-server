@@ -42,6 +42,6 @@ public class Transaction {
 
     private String description;
 
-    @Column(name = "option")
+    @Column(name = "transaction_option")
     private String option;
 }
