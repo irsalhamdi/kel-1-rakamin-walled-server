@@ -1,0 +1,5006 @@
+{
+	"info": {
+		"_postman_id": "764f82af-785b-4024-b5b9-687238f59303",
+		"name": "Walled V2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17369139",
+		"_collection_link": "https://blue-shadow-817996.postman.co/workspace/Walled-Final-Project~596ba7bd-e4cb-4402-af84-34422a6afa41/collection/17369139-764f82af-785b-4024-b5b9-687238f59303?action=share&source=collection_link&creator=17369139"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@mail.com\",\n    \"username\": \"johndoemail\",\n    \"fullname\": \"John Doe Mail\",\n    \"password\": \"P@ssword12*\",\n    \"phoneNumber\": \"08123321312\",\n    \"avatarUrl\": \"http://\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/register",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"john.doe@mail.com\",\n    \"username\": \"johndoemail\",\n    \"fullname\": \"John Doe Mail\",\n    \"password\": \"P@ssword12*\",\n    \"phoneNumber\": \"08123321312\",\n    \"avatarUrl\": \"http://\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/register",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:41:03 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "close",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"avatarUrl: Avatar URL must start with http://\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"john.doe@mail.com\",\n    \"username\": \"johndoemail\",\n    \"fullname\": \"John Doe Mail\",\n    \"password\": \"P@ssword12*\",\n    \"phoneNumber\": \"08123321312\",\n    \"avatarUrl\": \"https://\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/register",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:41:58 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User registered successfully\",\n    \"data\": {\n        \"message\": \"User registered successfully\",\n        \"userId\": \"2\",\n        \"email\": \"john2.doe@mail.com\",\n        \"fullname\": \"John Doe Mail\",\n        \"phoneNumber\": \"08123321312\",\n        \"username\": \"johndoemail\",\n        \"avatarUrl\": \"https://\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@mail.com\",\n    \"password\": \"P@ssword12*\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"john.doe@mail\",\n    \"password\": \"P@ssword12*\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/login",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:38:00 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"User not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"\",\n    \"password\": \"P@ssword12*\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/login",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:38:49 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "close",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"email: Email is required\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"john.doe@mail.com\",\n    \"password\": \"P@ssword12*\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/login",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:43:54 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Login successful\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTAzNCwiZXhwIjoxNzQ0Mzc1NDM0fQ.-21Ojl0n8em-60rhgC_b6WseLfwSimZjEhnp3uPn7xA\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0",
+								"name": "content-length",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdC",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdC",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/auth/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Apr 2025 13:34:31 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Invalid JWT token\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDQ2NTAyMiwiZXhwIjoxNzQ0NTUxNDIyfQ.Cpxj4QiuWqovLWKdsZ4IrRsTB7MC_tnUwPUZIAKT1Jk",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/auth/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 12 Apr 2025 13:37:22 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Logout berhasil\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get User By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzU5MDEzNCwiZXhwIjoxNzQzNjc2NTM0fQ.gfaZ4MYdfJJxMc4XHR1muW7N0_lAojZP_qWl3as2fGY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/2",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTE2NywiZXhwIjoxNzQ0Mzc1NTY3fQ.0DMLJIXqbQnzGiRH8Bzt-iqkg2MCvv87S6D3Dnw8B-k",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:46:19 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User retrieved successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"email\": \"john.doe@mail.com\",\n        \"username\": \"johndoemail\",\n        \"fullname\": \"John Doe Mail\",\n        \"avatarUrl\": \"https://\",\n        \"phoneNumber\": \"08123321312\"\n    }\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTE2NywiZXhwIjoxNzQ0Mzc1NTY3fQ.0DMLJIXqbQnzGiRH8Bzt-iqkg2MCvv87S6D3Dnw8B-k",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/12312321",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"12312321"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:46:47 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"User not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzU5MDEzNCwiZXhwIjoxNzQzNjc2NTM0fQ.gfaZ4MYdfJJxMc4XHR1muW7N0_lAojZP_qWl3as2fGY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/2",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"2"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:47:39 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"JWT expired\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Current User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzU5MDEzNCwiZXhwIjoxNzQzNjc2NTM0fQ.gfaZ4MYdfJJxMc4XHR1muW7N0_lAojZP_qWl3as2fGY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/me",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTAzNCwiZXhwIjoxNzQ0Mzc1NDM0fQ.-21Ojl0n8em-60rhgC_b6WseLfwSimZjEhnp3uPn7xA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/me",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:48:36 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User profile retrieved\",\n    \"data\": {\n        \"id\": 1,\n        \"email\": \"john.doe@mail.com\",\n        \"username\": \"johndoemail\",\n        \"fullname\": \"John Doe Mail\",\n        \"avatarUrl\": \"https://\",\n        \"phoneNumber\": \"08123321312\"\n    }\n}"
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzU5MDEzNCwiZXhwIjoxNzQzNjc2NTM0fQ.gfaZ4MYdfJJxMc4XHR1muW7N0_lAojZP_qWl3as2fGY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/me",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"me"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:48:59 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"JWT expired\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "Get Wallet By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzU5MDEzNCwiZXhwIjoxNzQzNjc2NTM0fQ.gfaZ4MYdfJJxMc4XHR1muW7N0_lAojZP_qWl3as2fGY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"wallets",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzU5MDEzNCwiZXhwIjoxNzQzNjc2NTM0fQ.gfaZ4MYdfJJxMc4XHR1muW7N0_lAojZP_qWl3as2fGY",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"wallets",
+										"1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:50:49 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"JWT expired\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTQ5NCwiZXhwIjoxNzQ0Mzc1ODk0fQ.9im7DLOZceV3Z_8tEnom_0pdEmVeHQWV-ZnunHzEHTE\"",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"wallets",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:52:11 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Wallet retrieved successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"userId\": 1,\n        \"accountNumber\": \"055936519328\",\n        \"balance\": 0,\n        \"createdAt\": \"2025-04-10T19:52:09.264805\",\n        \"updatedAt\": \"2025-04-10T19:52:09.264841\",\n        \"user\": {\n            \"id\": 1,\n            \"email\": \"john.doe@mail.com\",\n            \"username\": \"johndoemail\",\n            \"fullname\": \"John Doe Mail\",\n            \"avatarUrl\": \"https://\",\n            \"phoneNumber\": \"08123321312\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTQ5NCwiZXhwIjoxNzQ0Mzc1ODk0fQ.9im7DLOZceV3Z_8tEnom_0pdEmVeHQWV-ZnunHzEHTE\"",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/123213123",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"wallets",
+										"123213123"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:52:50 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Wallet not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Wallet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzU5NzI3MSwiZXhwIjoxNzQzNjgzNjcxfQ.JRXpm9YgDTsIUv9dtuziTW8hVyWboOriZjZxz0M9mRQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"wallets",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzU5NzI3MSwiZXhwIjoxNzQzNjgzNjcxfQ.JRXpm9YgDTsIUv9dtuziTW8hVyWboOriZjZxz0M9mRQ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"wallets",
+										"1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:54:07 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"JWT expired\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Already created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTYyNCwiZXhwIjoxNzQ0Mzc2MDI0fQ.AkQgOzf_b1HI-ByZWrZ0gsEvAI__mLAooVakvv7gNWM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"wallets",
+										"1"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:54:27 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"User already has a wallet\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTYyNCwiZXhwIjoxNzQ0Mzc2MDI0fQ.AkQgOzf_b1HI-ByZWrZ0gsEvAI__mLAooVakvv7gNWM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/123",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"wallets",
+										"123"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:55:22 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"User not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTYyNCwiZXhwIjoxNzQ0Mzc2MDI0fQ.AkQgOzf_b1HI-ByZWrZ0gsEvAI__mLAooVakvv7gNWM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"wallets",
+										"1"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:56:22 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Wallet created successfully\",\n    \"data\": {\n        \"id\": 2,\n        \"userId\": 3,\n        \"accountNumber\": \"000430411705\",\n        \"balance\": 0,\n        \"createdAt\": \"2025-04-10T19:56:22.513595\",\n        \"updatedAt\": \"2025-04-10T19:56:22.513612\",\n        \"user\": {\n            \"id\": 3,\n            \"email\": \"john3.doe@mail.com\",\n            \"username\": \"johndoemail\",\n            \"fullname\": \"John Doe Mail\",\n            \"avatarUrl\": \"https://\",\n            \"phoneNumber\": \"08123321312\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Wallet By User Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgyNjY2NiwiZXhwIjoxNzQzOTEzMDY2fQ.Dver-nM3wruvwcZPHth-WG1-NN7XH_thbIdlBfu7HTc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/user/1",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"wallets",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgyNjY2NiwiZXhwIjoxNzQzOTEzMDY2fQ.Dver-nM3wruvwcZPHth-WG1-NN7XH_thbIdlBfu7HTc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/user/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"wallets",
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:57:04 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"JWT expired\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTYyNCwiZXhwIjoxNzQ0Mzc2MDI0fQ.AkQgOzf_b1HI-ByZWrZ0gsEvAI__mLAooVakvv7gNWM",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/user/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"wallets",
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:57:26 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Wallets for user retrieved\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"userId\": 1,\n            \"accountNumber\": \"055936519328\",\n            \"balance\": 0,\n            \"createdAt\": \"2025-04-10T19:52:09.264805\",\n            \"updatedAt\": \"2025-04-10T19:52:09.264841\",\n            \"user\": {\n                \"id\": 1,\n                \"email\": \"john.doe@mail.com\",\n                \"username\": \"johndoemail\",\n                \"fullname\": \"John Doe Mail\",\n                \"avatarUrl\": \"https://\",\n                \"phoneNumber\": \"08123321312\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Walled",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDAwNzg3NCwiZXhwIjoxNzQ0MDk0Mjc0fQ.U1wMqlIIA2fBPbMs4lL3Yc-Ms7Lmb-iHtErwx0-ives",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"wallets"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDAwNzg3NCwiZXhwIjoxNzQ0MDk0Mjc0fQ.U1wMqlIIA2fBPbMs4lL3Yc-Ms7Lmb-iHtErwx0-ives",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"wallets"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:58:28 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"JWT expired\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTYyNCwiZXhwIjoxNzQ0Mzc2MDI0fQ.AkQgOzf_b1HI-ByZWrZ0gsEvAI__mLAooVakvv7gNWM",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"wallets"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 12:59:05 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"All wallets retrieved\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"userId\": 1,\n            \"accountNumber\": \"055936519328\",\n            \"balance\": 0,\n            \"createdAt\": \"2025-04-10T19:52:09.264805\",\n            \"updatedAt\": \"2025-04-10T19:52:09.264841\",\n            \"user\": {\n                \"id\": 1,\n                \"email\": \"john.doe@mail.com\",\n                \"username\": \"johndoemail\",\n                \"fullname\": \"John Doe Mail\",\n                \"avatarUrl\": \"https://\",\n                \"phoneNumber\": \"08123321312\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"userId\": 3,\n            \"accountNumber\": \"000430411705\",\n            \"balance\": 0,\n            \"createdAt\": \"2025-04-10T19:56:22.513595\",\n            \"updatedAt\": \"2025-04-10T19:56:22.513612\",\n            \"user\": {\n                \"id\": 3,\n                \"email\": \"john3.doe@mail.com\",\n                \"username\": \"johndoemail\",\n                \"fullname\": \"John Doe Mail\",\n                \"avatarUrl\": \"https://\",\n                \"phoneNumber\": \"08123321312\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Get Transaction Receipt",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDEwNzM5OSwiZXhwIjoxNzQ0MTkzNzk5fQ.AmccvnRWSqSnsqQOlF5tc2_BggqE9FgwTrS1mkhvykw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/export-pdf/1",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"export-pdf",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unathorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDEwNzM5OSwiZXhwIjoxNzQ0MTkzNzk5fQ.AmccvnRWSqSnsqQOlF5tc2_BggqE9FgwTrS1mkhvykw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/export-pdf/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"export-pdf",
+										"1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:43:41 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"JWT expired\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MjY3OSwiZXhwIjoxNzQ0Mzc5MDc5fQ.SLjObPVmDvo5Famy9T_yz4M459zBw0JmYtJ5RiZffRg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/export-pdf/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"export-pdf",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "Content-Disposition",
+									"value": "attachment; filename=transaction-1.pdf",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/pdf",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3469",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:45:16 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "%PDF-1.5\n%����\n3 0 obj\n<</ColorSpace/DeviceGray/Subtype/Image/Height 40/Filter/FlateDecode/Type/XObject/Width 164/Length 806/BitsPerComponent 8>>stream\nx�͗m�� \f�'\u0001\tH�\u0004$������pp�9�\u0004$T\u0002\u0012��%�|���N��ͯ���@�n��P3���ZB�s\u0017���2ѳ9v$ :g��$M��\u0017�̈��,\u0011/\nY#^\u0012�g�xAȟ%� \t\u0003����!�\toj\u0013�&�?�\u0016��\u0013�s�^��}�����Ƚ/\n\u001f�9��\u0005[]�M\u0011��\u0003,\u001b^!/���/!:Y[����j\"�Ɍ�G�n;�����d�5\u001aɖ;��.#/u�\u0004�vR�]FH��\u0003�'��7-SM���\u0003-���\b�d�d���z�\u0016�Z��d���.bu�9�T\u0005[Ma\u0017���t�fx�ΦyY�\u0006���\t�\nR@\u0011K�ܡ�n��x��?�\\���\u001d�b��\u001f\u0017W�s��z\njD4ZC\t�M�;nB�:�\b�z�����GF\fX:c0`q\u0010\"\n�'�\t��f�\r\u001a�E!�2N�����\u0018S�=�N5}�\u0010���s׵\u0019u��4�\\���\u001a\u000e1�d3�MϷ&]w�\u0012$[��t�\u0002\u001b��q\u0015{�1b)��s��HW\u0015�\u0016#$�gQ�\u000f�P�L�!F�\u001f#\u0001��ኣP�<�4\u0018\u001f�U��˖�!F�����ݛ�jV[�\u0006��`���\u0010V�;#&\u001b�>\u0015�)�Q\u0002ע���诘U��\u0018Ǣ]a�\u0018!t�\n\u001c��L#��U\u001f���\t�rn��yg,]1��N��Q񈛲y��Xu#�䜂�uF�\"\f\u001cE�5�bՀ���\u00137\u0019�5�AïJ���\u0011F|\u0005R�\u0004N�Q��\u0016�A�\u0004����\"\u0016q:�&�*x��(#+\u0003\u0017��Dd-X�9�+F�\u0010�3�a'}�\u0019�\u0011:�\u001ea��P���5\tRԾ�4{�\u0010�z�R7\u001de\u001c�n��@\u0014� V���$�E��2AZ~�\u000f\u000f�aA�PJU?����.�֠\u0014\u0007\r�%\u0010O�PꞦ\tm��\u0006V���\u0014,:�\u000f�o2~K�+�E}8E��HZ���T�\u000f�E۴\nendstream\nendobj\n4 0 obj\n<</ColorSpace/DeviceRGB/Subtype/Image/Height 40/Filter/FlateDecode/Type/XObject/Width 164/SMask 3 0 R/Length 509/BitsPerComponent 8>>stream\nx��=H�@\u0018�;�\n\u0015\r\u0005�EZAA)� ��`\tt�u�s�]\\t\u0012�Qԡ���uq�\u0010�.Y\\:Hg��\u0005\u0007'�-~Mji��Q/�qy\u001f^:\u001e�x��.�K$\u0002\u0000\u0000��*��\u0000�\u000b\u000b�Hъ�?�~\u000e\u00100��\u0013�\u001d薘^�nr\u0006����E�)4�[*���n�\u0018-\u001a��!��\u0017\r�\u0012@�h��7'M����\u0001\u0000 \\�J%;`,�R\u0014,��1M3hׄ�i�\u000b\u0005\u001d��W[�\n$p-\u000e�k���\u001f��8��=k���8\f��_p-\u001b�k2k}���\u0002ײ�fe����=`qQU�w���k��\t\f�w��N~��\u0007�j�w5`\u0014��Y�>���\u000e�M.����ڞ?�y�ņ\u001c������iݩDt�e�\u0016\u0001f�C�b�UM\u001ffb��\"����kq`�6�\u000e����u�;8��kq`6���\n��\u001b�~/��n�u�p�`�Z�>����s�w�X�ńټ�6�Lm�M���(�\u0019��\u001a�g)�\u0001��\u000b\r�s3�ݛz��)\u0010�@��{��>ġϵ�\u0013-��y\u0013��`�k�Єk9��pZp=A\u000f��aw�X\u0005��\u0001�HÃ��f�\u0018���J\u0000\u0000��\u001f�� c\nendstream\nendobj\n6 0 obj\n<</Filter/FlateDecode/Length 651>>stream\nx��U�n�0\u0010��+���`���Ro.�\u0000\r�\u0002v\u0004�@Ӄa+�\u0003K~���]J�%ڵ\u000eɡ�A\\{gv�����K�\u0004x-�����׌�ؚ\t.\u0012g�\u000fSp���1)����-`�\u0012\u000b^\u0018�/�1)W��\u0017M�X.4���Z\u001e�^�\u000fVvx��ǟ)�^p�*\\{\u001dq\b��\t\b�*�S��y�4'\u00157\u001a�qm�帗��\u0013�YD��$�\u0003��6L\u0005?T��\n\\UV\u0005G\u0005\t>\u0010�#�\u000eNKA\u000bk<7a{$����U��:A��K�ܑ�\u0010\u0013��^�\u0014�U\"��hGok��2���\u0006�\u000fnZ{0\n��T>M�\u0000+��@F9�%�xRp\b���� p \n�ܘ*��\u0011�.\u001bA�Y�#�.\u001b�9W���������g�vr�8\u001cț;����LI�JH\u0012�\u0005#4�\u001a��]�W \u0005>\\�����<�%ܢT�pB\u001a�e��<�`|��J�l�s /!\u0014��h\u0003�&�\u0006����e\u000e\u000f��\u0002��D�R+��ƹ���zSn��,\u001f�\u0006�\u001f�\u0012�\u0005�R�Ѯ��\u0011��{��#4�\u0001}\u001b���\u0011t�yG-�\u0016p3/^$�\u001dF��\u0014fw�\u0018Y4\u0017�ie�I��Lw�e\t���4�n���Ou�PI}�u�-�\nrJ�]Yn]`���j\u0003J��\f��Y��9��9T��݂6t���r_��>8�x4��U�q>���y?\u0002m�+�<��,����`��q�n�p\u0016ϱ����.����Ěj\u0000��b^�]��A�v@K\u0004e��dQ��\u000f�}�\u0006�_H��a\nendstream\nendobj\n1 0 obj\n<</Contents 6 0 R/Type/Page/Resources<</ProcSet [/PDF /Text /ImageB /ImageC /ImageI]/Font<</F1 2 0 R/F2 5 0 R>>/XObject<</img1 4 0 R/img0 3 0 R>>>>/Parent 7 0 R/MediaBox[0 0 595.28 841.88]>>\nendobj\n9 0 obj\n<</Dest[1 0 R/XYZ 0 784.91 0]/Title(Transaction Successful!)/Parent 8 0 R>>\nendobj\n8 0 obj\n<</Type/Outlines/Count 1/First 9 0 R/Last 9 0 R>>\nendobj\n2 0 obj\n<</Subtype/Type1/Type/Font/BaseFont/Helvetica/Encoding/WinAnsiEncoding>>\nendobj\n5 0 obj\n<</Subtype/Type1/Type/Font/BaseFont/Helvetica-Bold/Encoding/WinAnsiEncoding>>\nendobj\n7 0 obj\n<</Kids[1 0 R]/Type/Pages/Count 1/ITXT(1.3.11)>>\nendobj\n10 0 obj\n<</PageMode/UseOutlines/Type/Catalog/Outlines 8 0 R/Pages 7 0 R>>\nendobj\n11 0 obj\n<<>>\nendobj\nxref\n0 12\n0000000000 65535 f \n0000002369 00000 n \n0000002731 00000 n \n0000000015 00000 n \n0000000976 00000 n \n0000002819 00000 n \n0000001651 00000 n \n0000002912 00000 n \n0000002666 00000 n \n0000002575 00000 n \n0000002976 00000 n \n0000003058 00000 n \ntrailer\n<</Info 11 0 R/ID [<da2b2ee3ba02f19fb2d4eeab5c6374f4><56d4825b73a18e9e259f1aa1cd9fb36e>]/Root 10 0 R/Size 12>>\nstartxref\n3079\n%%EOF\n"
+						}
+					]
+				},
+				{
+					"name": "Get All Transaction",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgzMDkxNiwiZXhwIjoxNzQzOTE3MzE2fQ.njZB77SomOdhX3rp6aHpJerjMKBLou0AbDUJwljLd4o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/filter?walletId=1&type=TOP_UP&timeRange=TODAY&startDate=2024-12-01T00:00:00&endDate=2024-12-31T23:59:59&page=0&size=10&sortBy=transactionDate&order=desc&Authorization=Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgyNjY2NiwiZXhwIjoxNzQzOTEzMDY2fQ.Dver-nM3wruvwcZPHth-WG1-NN7XH_thbIdlBfu7HTc",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "walletId",
+									"value": "1"
+								},
+								{
+									"key": "type",
+									"value": "TOP_UP"
+								},
+								{
+									"key": "timeRange",
+									"value": "TODAY"
+								},
+								{
+									"key": "startDate",
+									"value": "2024-12-01T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-12-31T23:59:59"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "sortBy",
+									"value": "transactionDate"
+								},
+								{
+									"key": "order",
+									"value": "desc"
+								},
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgyNjY2NiwiZXhwIjoxNzQzOTEzMDY2fQ.Dver-nM3wruvwcZPHth-WG1-NN7XH_thbIdlBfu7HTc"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unathorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgzMDkxNiwiZXhwIjoxNzQzOTE3MzE2fQ.njZB77SomOdhX3rp6aHpJerjMKBLou0AbDUJwljLd4o",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/filter?walletId=1&type=TOP_UP&timeRange=TODAY&startDate=2024-12-01T00:00:00&endDate=2024-12-31T23:59:59&page=0&size=10&sortBy=transactionDate&order=desc&Authorization=Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgyNjY2NiwiZXhwIjoxNzQzOTEzMDY2fQ.Dver-nM3wruvwcZPHth-WG1-NN7XH_thbIdlBfu7HTc",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"filter"
+									],
+									"query": [
+										{
+											"key": "walletId",
+											"value": "1"
+										},
+										{
+											"key": "type",
+											"value": "TOP_UP"
+										},
+										{
+											"key": "timeRange",
+											"value": "TODAY"
+										},
+										{
+											"key": "startDate",
+											"value": "2024-12-01T00:00:00"
+										},
+										{
+											"key": "endDate",
+											"value": "2024-12-31T23:59:59"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortBy",
+											"value": "transactionDate"
+										},
+										{
+											"key": "order",
+											"value": "desc"
+										},
+										{
+											"key": "Authorization",
+											"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgyNjY2NiwiZXhwIjoxNzQzOTEzMDY2fQ.Dver-nM3wruvwcZPHth-WG1-NN7XH_thbIdlBfu7HTc"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:09:54 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"JWT expired\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Transaction By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlscy5jb20iLCJpYXQiOjE3NDM1OTU0NTYsImV4cCI6MTc0MzY4MTg1Nn0.OMKmi1nccAwyVbuTC92-ITb93dYXNDmX4Ue3nf13XIs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/1",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unathorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlscy5jb20iLCJpYXQiOjE3NDM1OTU0NTYsImV4cCI6MTc0MzY4MTg1Nn0.OMKmi1nccAwyVbuTC92-ITb93dYXNDmX4Ue3nf13XIs",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:03:08 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"JWT expired\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTYyNCwiZXhwIjoxNzQ0Mzc2MDI0fQ.AkQgOzf_b1HI-ByZWrZ0gsEvAI__mLAooVakvv7gNWM",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"1"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:03:36 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Transaction not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MDU2MiwiZXhwIjoxNzQ0Mzc2OTYyfQ.nnZbPFyIS3AnSNcMNPfpoag4Nw3x9dl_zm2z8wyKjME",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:09:33 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Transaction retrieved successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"walletId\": 1,\n        \"transactionType\": \"TOP_UP\",\n        \"amount\": 10000,\n        \"recipientWalletId\": null,\n        \"transactionDate\": \"2025-04-10T20:05:28.417728\",\n        \"description\": \"\",\n        \"option\": \"BYOND\",\n        \"senderAccountNumber\": \"055936519328\",\n        \"senderFullname\": \"John Doe Mail\",\n        \"receiverAccountNumber\": null,\n        \"receiverFullname\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MTE2OCwiZXhwIjoxNzQ0Mzc3NTY4fQ.aWbw_lfF8E1KxbCOBjUVF_j-WyQTif05HeFWM09oDok",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"walletId\": \"1\",\n    \"transactionType\": \"TOP_UP\",\n    \"amount\": \"10000.00\",\n    \"recipientAccountNumber\": \"\",\n    \"description\": \"\",\n    \"option\": \"BYOND\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"transactions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MTE2OCwiZXhwIjoxNzQ0Mzc3NTY4fQ.aWbw_lfF8E1KxbCOBjUVF_j-WyQTif05HeFWM09oDok",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"walletId\": \"1\",\n    \"transactionType\": \"TOP_UP\",\n    \"amount\": \"10000.00\",\n    \"recipientAccountNumber\": \"\",\n    \"description\": \"\",\n    \"option\": \"BYOND\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:28:41 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Transaction processed successfully\",\n    \"data\": {\n        \"id\": 6,\n        \"walletId\": 1,\n        \"transactionType\": \"TOP_UP\",\n        \"amount\": 10000,\n        \"recipientWalletId\": null,\n        \"transactionDate\": \"2025-04-10T20:28:36.3703\",\n        \"description\": \"\",\n        \"option\": \"BYOND\",\n        \"senderAccountNumber\": \"055936519328\",\n        \"senderFullname\": \"John Doe Mail\",\n        \"receiverAccountNumber\": null,\n        \"receiverFullname\": null\n    }\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MTE2OCwiZXhwIjoxNzQ0Mzc3NTY4fQ.aWbw_lfF8E1KxbCOBjUVF_j-WyQTif05HeFWM09oDok",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"walletId\": \"0\",\n    \"transactionType\": \"TOP_UP\",\n    \"amount\": \"10000.00\",\n    \"recipientAccountNumber\": \"\",\n    \"description\": \"\",\n    \"option\": \"BYOND\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:30:42 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Wallet not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MTE2OCwiZXhwIjoxNzQ0Mzc3NTY4fQ.aWbw_lfF8E1KxbCOBjUVF_j-WyQTif05HeFWM09oDok",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"walletId\": \"0\",\n    \"transactionType\": \"TOP_UP\",\n    \"amount\": \"00.00\",\n    \"recipientAccountNumber\": \"\",\n    \"description\": \"\",\n    \"option\": \"BYOND\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:31:15 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "close",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"amount: Minimum transaction is IDR 10,000, amount: must be greater than or equal to 0.01\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Summary",
+			"item": [
+				{
+					"name": "Get Summary",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzY2MDQwNCwiZXhwIjoxNzQzNzQ2ODA0fQ.EUC530QNOr0bYIR9DtZZ8gnXuAq-y9_LmdlqzLOa0Ts",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/summary/1",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"summary",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzY2MDQwNCwiZXhwIjoxNzQzNzQ2ODA0fQ.EUC530QNOr0bYIR9DtZZ8gnXuAq-y9_LmdlqzLOa0Ts",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/summary/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"summary",
+										"1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:00:30 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"JWT expired\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTYyNCwiZXhwIjoxNzQ0Mzc2MDI0fQ.AkQgOzf_b1HI-ByZWrZ0gsEvAI__mLAooVakvv7gNWM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/summary/1",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"summary",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:00:52 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Wallet summary retrieved successfully\",\n    \"data\": {\n        \"totalIncome\": 0,\n        \"totalOutcome\": 0,\n        \"balance\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Financial Graph",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"name": "cache-control",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"name": "postman-token",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"name": "content-type",
+								"type": "text"
+							},
+							{
+								"key": "Content-Length",
+								"value": "<calculated when request is sent>",
+								"name": "content-length",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"name": "host",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"name": "user-agent",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"name": "accept",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"name": "accept-encoding",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"name": "connection",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzcyOTg0MCwiZXhwIjoxNzQzODE2MjQwfQ.gLJzSCI-DO9HJjat7iiWhcBqOSnK7gauS_gidHPvZto",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"view\": \"monthly\",\n  \"year\": 2025,\n  \"walletId\": 1\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/graph",
+							"protocol": "https",
+							"host": [
+								"kel-1-rakamin-walled-server",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"graph"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unathorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzcyOTg0MCwiZXhwIjoxNzQzODE2MjQwfQ.gLJzSCI-DO9HJjat7iiWhcBqOSnK7gauS_gidHPvZto",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"view\": \"monthly\",\n  \"year\": 2025,\n  \"walletId\": 1\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/graph",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"graph"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=ISO-8859-1",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:01:42 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"JWT expired\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Monthly",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MDU2MiwiZXhwIjoxNzQ0Mzc2OTYyfQ.nnZbPFyIS3AnSNcMNPfpoag4Nw3x9dl_zm2z8wyKjME",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"view\": \"monthly\",\n  \"year\": 2025,\n  \"walletId\": 1\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/graph",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"graph"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:11:12 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Graph data generated\",\n    \"data\": {\n        \"walletId\": 1,\n        \"view\": \"monthly\",\n        \"year\": 2025,\n        \"month\": null,\n        \"maxValue\": 30000,\n        \"data\": [\n            {\n                \"label\": \"JAN\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"FEB\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"MAR\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"APR\",\n                \"income\": 30000,\n                \"outcome\": 0,\n                \"incomePercent\": 100,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"MAY\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"JUN\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"JUL\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"AUG\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"SEP\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"OCT\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"NOV\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"DEC\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Weekly",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MDU2MiwiZXhwIjoxNzQ0Mzc2OTYyfQ.nnZbPFyIS3AnSNcMNPfpoag4Nw3x9dl_zm2z8wyKjME",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"view\": \"weekly\",\n  \"month\": \"04\",\n  \"year\": 2025,\n  \"walletId\": 1\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/graph",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"graph"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:14:13 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Graph data generated\",\n    \"data\": {\n        \"walletId\": 1,\n        \"view\": \"weekly\",\n        \"year\": 2025,\n        \"month\": \"04\",\n        \"maxValue\": 30000,\n        \"data\": [\n            {\n                \"label\": \"1 - 8\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"9 - 16\",\n                \"income\": 30000,\n                \"outcome\": 0,\n                \"incomePercent\": 100,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"17 - 24\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"25 - 30\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Quarterly",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MDU2MiwiZXhwIjoxNzQ0Mzc2OTYyfQ.nnZbPFyIS3AnSNcMNPfpoag4Nw3x9dl_zm2z8wyKjME",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"view\": \"quartal\",\n  \"year\": 2025,\n  \"walletId\": 1\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/graph",
+									"protocol": "https",
+									"host": [
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"transactions",
+										"graph"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method",
+									"type": "text"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"type": "text"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"type": "text"
+								},
+								{
+									"key": "Expires",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Apr 2025 13:16:14 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60",
+									"type": "text"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Graph data generated\",\n    \"data\": {\n        \"walletId\": 1,\n        \"view\": \"quartal\",\n        \"year\": 2025,\n        \"month\": null,\n        \"maxValue\": 30000,\n        \"data\": [\n            {\n                \"label\": \"Jan - Mar\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"Apr - Jun\",\n                \"income\": 30000,\n                \"outcome\": 0,\n                \"incomePercent\": 100,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"Jul - Sep\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            },\n            {\n                \"label\": \"Oct - Dec\",\n                \"income\": 0,\n                \"outcome\": 0,\n                \"incomePercent\": 0,\n                \"outcomePercent\": 0\n            }\n        ]\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
