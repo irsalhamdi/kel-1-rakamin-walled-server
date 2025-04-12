@@ -30,6 +30,5 @@ public class RegisterRequest {
     private String username;
 
     @Nullable
-    @Pattern(regexp = "^(https://).*$", message = "Avatar URL must start with https://")
     private String avatarUrl;
 }
