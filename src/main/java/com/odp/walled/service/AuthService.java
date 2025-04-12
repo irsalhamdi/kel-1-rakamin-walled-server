@@ -21,7 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class AuthService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder; // Inject PasswordEncoder
+    private final PasswordEncoder passwordEncoder;
 
     private final JwtUtils jwtUtils;
 
@@ -60,6 +60,24 @@ public class AuthService {
         }
 
         String token = jwtUtils.generateToken(user.getEmail());
+
+        user.setToken(token);
+        userRepository.save(user);
+
         return new LoginResponse(token);
+    }
+
+    public void logout(String token) {
+        String email = JwtUtils.getUsernameFromToken(token);
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!token.equals(user.getToken())) {
+            throw new RuntimeException("Token mismatch or already logged out");
+        }
+
+        user.setToken(null);
+        userRepository.save(user);
     }
 }

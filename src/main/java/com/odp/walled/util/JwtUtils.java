@@ -11,14 +11,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtUtils {
 
-    private static final String SECRET_KEY = "YourSecretKeyYourSecretKeyYourSecretKey"; // 256-bit key
-    private static final long EXPIRATION_MS = 86400000L; // 1 day
-
-    // TODO add jwt secret key into env
+    private static final String SECRET_KEY = "YourSecretKeyYourSecretKeyYourSecretKey";
+    private static final long EXPIRATION_MS = 86400000L;
 
     private static final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
-    // Generate JWT Token
     public static String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
@@ -28,7 +25,6 @@ public class JwtUtils {
                 .compact();
     }
 
-    // Validate JWT Token
     public static boolean validateToken(String token) {
         try {
             Jwts.parserBuilder()
@@ -41,7 +37,6 @@ public class JwtUtils {
         }
     }
 
-    // Get Username from Token
     public static String getUsernameFromToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key)

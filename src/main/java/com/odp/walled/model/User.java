@@ -34,4 +34,7 @@ public class User {
 
     @Column(name = "phone_number", length = 20)
     private String phoneNumber;
+
+    @Column(name = "token", columnDefinition = "TEXT")
+    private String token;
 }
