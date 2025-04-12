@@ -34,4 +34,21 @@ public class AuthController {
         APIResponse<LoginResponse> response = new APIResponse<>("success", "Login successful", data);
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<APIResponse<String>> logout(@RequestHeader("Authorization") String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.badRequest().body(new APIResponse<>("error", "Token missing", null));
+        }
+
+        String token = authHeader.substring(7);
+
+        try {
+            authService.logout(token);
+            return ResponseEntity.ok(new APIResponse<>("success", "Logout berhasil", null));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new APIResponse<>("error", e.getMessage(), null));
+        }
+    }
 }
