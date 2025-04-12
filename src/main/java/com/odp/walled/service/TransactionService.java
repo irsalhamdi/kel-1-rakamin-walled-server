@@ -85,8 +85,12 @@ public class TransactionService {
 
         walletRepository.save(wallet);
 
-        String email = wallet.getUser().getEmail();
-        emailService.sendTransactionSuccessEmail(email, transaction);
+        try {
+            String email = wallet.getUser().getEmail();
+            emailService.sendTransactionSuccessEmail(email, transaction);
+        } catch (Exception e) {
+            System.err.println("Gagal mengirim email transaksi: " + e.getMessage());
+        }
 
         return transactionMapper.toResponse(transactionRepository.save(transaction));
     }
