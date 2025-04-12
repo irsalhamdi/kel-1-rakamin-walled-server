@@ -53,10 +53,10 @@ public class AuthService {
 
     public LoginResponse login(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new ResourceNotFound("User not found"));
+                .orElseThrow(() -> new ResourceNotFound("Email Or Password Wrond"));
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new BadCredentialsException("Invalid password");
+            throw new BadCredentialsException("Email Or Password Wrond");
         }
 
         String token = jwtUtils.generateToken(user.getEmail());
