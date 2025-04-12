@@ -58,5 +58,12 @@ public class GlobalExceptionHandler {
                 .body(new APIResponse<>("error", ex.getMessage(), null));
     }
 
+    @ExceptionHandler(InsufficientBalanceException.class)
+    public ResponseEntity<APIResponse<Object>> handleInsufficientBalance(InsufficientBalanceException ex) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new APIResponse<>("error", ex.getMessage(), null));
+    }
+
 }
 
