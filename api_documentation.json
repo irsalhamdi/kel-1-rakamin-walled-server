@@ -12,6 +12,24 @@
 			"item": [
 				{
 					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"pm.environment.set(\"userEmail\", jsonData.data.email); ",
+									"pm.environment.set(\"userId\", jsonData.data.userId); ",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -23,7 +41,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"john.doe@mail.com\",\n    \"username\": \"johndoemail\",\n    \"fullname\": \"John Doe Mail\",\n    \"password\": \"P@ssword12*\",\n    \"phoneNumber\": \"08123321312\",\n    \"avatarUrl\": \"http://\"\n}",
+							"raw": "{\n    \"email\": \"xexe@gmail.com\",\n    \"username\": \"johndoemail\",\n    \"fullname\": \"John Doe Mail\",\n    \"password\": \"P@ssword12*\",\n    \"phoneNumber\": \"08123321312\",\n    \"avatarUrl\": \"http://\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -31,12 +49,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/register",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/auth/register",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
@@ -67,12 +82,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/register",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/auth/register",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -170,12 +182,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/register",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/auth/register",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -261,12 +270,30 @@
 				},
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"pm.environment.set(\"authToken\", jsonData.data.token);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"john.doe@mail.com\",\n    \"password\": \"P@ssword12*\"\n}",
+							"raw": "{\n    \"email\": \"{{userEmail}}\",\n    \"password\": \"P@ssword12*\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -274,12 +301,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/login",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/auth/login",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
@@ -304,12 +328,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/login",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/auth/login",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -406,12 +427,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/login",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/auth/login",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -503,12 +521,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/login",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/auth/login",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -594,70 +609,34 @@
 				},
 				{
 					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
 							{
-								"key": "Cache-Control",
-								"value": "no-cache",
-								"name": "cache-control",
-								"type": "text"
-							},
-							{
-								"key": "Postman-Token",
-								"value": "<calculated when request is sent>",
-								"name": "postman-token",
-								"type": "text"
-							},
-							{
-								"key": "Content-Length",
-								"value": "0",
-								"name": "content-length",
-								"type": "text"
-							},
-							{
-								"key": "Host",
-								"value": "<calculated when request is sent>",
-								"name": "host",
-								"type": "text"
-							},
-							{
-								"key": "User-Agent",
-								"value": "PostmanRuntime/7.39.1",
-								"name": "user-agent",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"name": "accept",
-								"type": "text"
-							},
-							{
-								"key": "Accept-Encoding",
-								"value": "gzip, deflate, br",
-								"name": "accept-encoding",
-								"type": "text"
-							},
-							{
-								"key": "Connection",
-								"value": "keep-alive",
-								"name": "connection",
-								"type": "text"
-							},
-							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdC",
+								"value": "Bearer {{authToken}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/api/auth/logout",
-							"protocol": "http",
+							"raw": "{{base_url}}/api/auth/logout",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"auth",
@@ -678,12 +657,13 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8080/api/auth/logout",
-									"protocol": "http",
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/logout",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
 									],
-									"port": "8080",
 									"path": [
 										"api",
 										"auth",
@@ -771,17 +751,18 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDQ2NTAyMiwiZXhwIjoxNzQ0NTUxNDIyfQ.Cpxj4QiuWqovLWKdsZ4IrRsTB7MC_tnUwPUZIAKT1Jk",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8080/api/auth/logout",
-									"protocol": "http",
+									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/auth/logout",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"kel-1-rakamin-walled-server",
+										"onrender",
+										"com"
 									],
-									"port": "8080",
 									"path": [
 										"api",
 										"auth",
@@ -871,69 +852,41 @@
 			"item": [
 				{
 					"name": "Get User By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cache-Control",
-								"value": "no-cache",
-								"name": "cache-control",
-								"type": "text"
-							},
-							{
-								"key": "Postman-Token",
-								"value": "<calculated when request is sent>",
-								"name": "postman-token",
-								"type": "text"
-							},
-							{
-								"key": "Host",
-								"value": "<calculated when request is sent>",
-								"name": "host",
-								"type": "text"
-							},
-							{
-								"key": "User-Agent",
-								"value": "PostmanRuntime/7.39.1",
-								"name": "user-agent",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"name": "accept",
-								"type": "text"
-							},
-							{
-								"key": "Accept-Encoding",
-								"value": "gzip, deflate, br",
-								"name": "accept-encoding",
-								"type": "text"
-							},
-							{
-								"key": "Connection",
-								"value": "keep-alive",
-								"name": "connection",
-								"type": "text"
-							},
-							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzU5MDEzNCwiZXhwIjoxNzQzNjc2NTM0fQ.gfaZ4MYdfJJxMc4XHR1muW7N0_lAojZP_qWl3as2fGY",
+								"value": "Bearer {{authToken}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/2",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/users/{{userId}}",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"users",
-								"2"
+								"{{userId}}"
 							]
 						}
 					},
@@ -945,22 +898,19 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTE2NywiZXhwIjoxNzQ0Mzc1NTY3fQ.0DMLJIXqbQnzGiRH8Bzt-iqkg2MCvv87S6D3Dnw8B-k",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/users/{{userId}}",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"users",
-										"1"
+										"{{userId}}"
 									]
 								}
 							},
@@ -1044,17 +994,14 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTE2NywiZXhwIjoxNzQ0Mzc1NTY3fQ.0DMLJIXqbQnzGiRH8Bzt-iqkg2MCvv87S6D3Dnw8B-k",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/12312321",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/users/12312321",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -1148,17 +1095,14 @@
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/2",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/users/{{userId}}",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"users",
-										"2"
+										"{{userId}}"
 									]
 								}
 							},
@@ -1239,64 +1183,33 @@
 				},
 				{
 					"name": "Get Current User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cache-Control",
-								"value": "no-cache",
-								"name": "cache-control",
-								"type": "text"
-							},
-							{
-								"key": "Postman-Token",
-								"value": "<calculated when request is sent>",
-								"name": "postman-token",
-								"type": "text"
-							},
-							{
-								"key": "Host",
-								"value": "<calculated when request is sent>",
-								"name": "host",
-								"type": "text"
-							},
-							{
-								"key": "User-Agent",
-								"value": "PostmanRuntime/7.39.1",
-								"name": "user-agent",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"name": "accept",
-								"type": "text"
-							},
-							{
-								"key": "Accept-Encoding",
-								"value": "gzip, deflate, br",
-								"name": "accept-encoding",
-								"type": "text"
-							},
-							{
-								"key": "Connection",
-								"value": "keep-alive",
-								"name": "connection",
-								"type": "text"
-							},
-							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzU5MDEzNCwiZXhwIjoxNzQzNjc2NTM0fQ.gfaZ4MYdfJJxMc4XHR1muW7N0_lAojZP_qWl3as2fGY",
+								"value": "Bearer {{authToken}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/me",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/users/me",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
@@ -1313,17 +1226,14 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTAzNCwiZXhwIjoxNzQ0Mzc1NDM0fQ.-21Ojl0n8em-60rhgC_b6WseLfwSimZjEhnp3uPn7xA",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/me",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/users/me",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -1417,12 +1327,9 @@
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/users/me",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/users/me",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -1513,69 +1420,38 @@
 			"item": [
 				{
 					"name": "Get Wallet By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cache-Control",
-								"value": "no-cache",
-								"name": "cache-control",
-								"type": "text"
-							},
-							{
-								"key": "Postman-Token",
-								"value": "<calculated when request is sent>",
-								"name": "postman-token",
-								"type": "text"
-							},
-							{
-								"key": "Host",
-								"value": "<calculated when request is sent>",
-								"name": "host",
-								"type": "text"
-							},
-							{
-								"key": "User-Agent",
-								"value": "PostmanRuntime/7.39.1",
-								"name": "user-agent",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"name": "accept",
-								"type": "text"
-							},
-							{
-								"key": "Accept-Encoding",
-								"value": "gzip, deflate, br",
-								"name": "accept-encoding",
-								"type": "text"
-							},
-							{
-								"key": "Connection",
-								"value": "keep-alive",
-								"name": "connection",
-								"type": "text"
-							},
-							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzU5MDEzNCwiZXhwIjoxNzQzNjc2NTM0fQ.gfaZ4MYdfJJxMc4XHR1muW7N0_lAojZP_qWl3as2fGY",
+								"value": "Bearer {{authToken}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/wallets/{{walledId}}",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"wallets",
-								"1"
+								"{{walledId}}"
 							]
 						}
 					},
@@ -1592,17 +1468,14 @@
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/wallets/{{walledId}}",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"wallets",
-										"1"
+										"{{walledId}}"
 									]
 								}
 							},
@@ -1686,22 +1559,19 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTQ5NCwiZXhwIjoxNzQ0Mzc1ODk0fQ.9im7DLOZceV3Z_8tEnom_0pdEmVeHQWV-ZnunHzEHTE\"",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/wallets/{{walledId}}",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"wallets",
-										"1"
+										"{{walledId}}"
 									]
 								}
 							},
@@ -1785,20 +1655,16 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTQ5NCwiZXhwIjoxNzQ0Mzc1ODk0fQ.9im7DLOZceV3Z_8tEnom_0pdEmVeHQWV-ZnunHzEHTE\"",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/123213123",
-									"protocol": "https",
+									"raw": "{{base_url}}api/wallets/123213123",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}api"
 									],
 									"path": [
-										"api",
 										"wallets",
 										"123213123"
 									]
@@ -1881,6 +1747,23 @@
 				},
 				{
 					"name": "Create Wallet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"pm.environment.set(\"walledId\", jsonData.data.id); ",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1891,7 +1774,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzU5NzI3MSwiZXhwIjoxNzQzNjgzNjcxfQ.JRXpm9YgDTsIUv9dtuziTW8hVyWboOriZjZxz0M9mRQ",
+								"value": "Bearer {{authToken}}",
 								"type": "text"
 							}
 						],
@@ -1905,17 +1788,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/wallets/{{userId}}",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"wallets",
-								"1"
+								"{{userId}}"
 							]
 						}
 					},
@@ -1946,17 +1826,14 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/wallets/{{userId}}",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"wallets",
-										"1"
+										"{{userId}}"
 									]
 								}
 							},
@@ -2045,7 +1922,7 @@
 									},
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTYyNCwiZXhwIjoxNzQ0Mzc2MDI0fQ.AkQgOzf_b1HI-ByZWrZ0gsEvAI__mLAooVakvv7gNWM",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
@@ -2059,17 +1936,14 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/wallets/{{userId}}",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"wallets",
-										"1"
+										"{{userId}}"
 									]
 								}
 							},
@@ -2158,7 +2032,7 @@
 									},
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTYyNCwiZXhwIjoxNzQ0Mzc2MDI0fQ.AkQgOzf_b1HI-ByZWrZ0gsEvAI__mLAooVakvv7gNWM",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
@@ -2172,12 +2046,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/123",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/wallets/123",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -2271,7 +2142,7 @@
 									},
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTYyNCwiZXhwIjoxNzQ0Mzc2MDI0fQ.AkQgOzf_b1HI-ByZWrZ0gsEvAI__mLAooVakvv7gNWM",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
@@ -2285,17 +2156,14 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/wallets/{{userId}}",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"wallets",
-										"1"
+										"{{userId}}"
 									]
 								}
 							},
@@ -2376,28 +2244,39 @@
 				},
 				{
 					"name": "Get Wallet By User Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgyNjY2NiwiZXhwIjoxNzQzOTEzMDY2fQ.Dver-nM3wruvwcZPHth-WG1-NN7XH_thbIdlBfu7HTc",
+								"value": "Bearer {{authToken}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/user/1",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/wallets/user/{{userId}}",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"wallets",
 								"user",
-								"1"
+								"{{userId}}"
 							]
 						}
 					},
@@ -2414,12 +2293,9 @@
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/user/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/wallets/user/1",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -2514,12 +2390,9 @@
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets/user/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/wallets/user/1",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -2606,64 +2479,33 @@
 				},
 				{
 					"name": "Get All Walled",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cache-Control",
-								"value": "no-cache",
-								"name": "cache-control",
-								"type": "text"
-							},
-							{
-								"key": "Postman-Token",
-								"value": "<calculated when request is sent>",
-								"name": "postman-token",
-								"type": "text"
-							},
-							{
-								"key": "Host",
-								"value": "<calculated when request is sent>",
-								"name": "host",
-								"type": "text"
-							},
-							{
-								"key": "User-Agent",
-								"value": "PostmanRuntime/7.39.1",
-								"name": "user-agent",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"name": "accept",
-								"type": "text"
-							},
-							{
-								"key": "Accept-Encoding",
-								"value": "gzip, deflate, br",
-								"name": "accept-encoding",
-								"type": "text"
-							},
-							{
-								"key": "Connection",
-								"value": "keep-alive",
-								"name": "connection",
-								"type": "text"
-							},
-							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDAwNzg3NCwiZXhwIjoxNzQ0MDk0Mjc0fQ.U1wMqlIIA2fBPbMs4lL3Yc-Ms7Lmb-iHtErwx0-ives",
+								"value": "Bearer {{authToken}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/wallets",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
@@ -2684,12 +2526,9 @@
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/wallets",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -2782,12 +2621,9 @@
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/wallets",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/wallets",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -2877,70 +2713,39 @@
 			"item": [
 				{
 					"name": "Get Transaction Receipt",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cache-Control",
-								"value": "no-cache",
-								"name": "cache-control",
-								"type": "text"
-							},
-							{
-								"key": "Postman-Token",
-								"value": "<calculated when request is sent>",
-								"name": "postman-token",
-								"type": "text"
-							},
-							{
-								"key": "Host",
-								"value": "<calculated when request is sent>",
-								"name": "host",
-								"type": "text"
-							},
-							{
-								"key": "User-Agent",
-								"value": "PostmanRuntime/7.39.1",
-								"name": "user-agent",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"name": "accept",
-								"type": "text"
-							},
-							{
-								"key": "Accept-Encoding",
-								"value": "gzip, deflate, br",
-								"name": "accept-encoding",
-								"type": "text"
-							},
-							{
-								"key": "Connection",
-								"value": "keep-alive",
-								"name": "connection",
-								"type": "text"
-							},
-							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDEwNzM5OSwiZXhwIjoxNzQ0MTkzNzk5fQ.AmccvnRWSqSnsqQOlF5tc2_BggqE9FgwTrS1mkhvykw",
+								"value": "Bearer {{authToken}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/export-pdf/1",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/transactions/export-pdf/{{transactionId}}",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"transactions",
 								"export-pdf",
-								"1"
+								"{{transactionId}}"
 							]
 						}
 					},
@@ -2957,12 +2762,9 @@
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/export-pdf/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions/export-pdf/1",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -3052,17 +2854,14 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MjY3OSwiZXhwIjoxNzQ0Mzc5MDc5fQ.SLjObPVmDvo5Famy9T_yz4M459zBw0JmYtJ5RiZffRg",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/export-pdf/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions/export-pdf/1",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -3154,49 +2953,56 @@
 				},
 				{
 					"name": "Get All Transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Cache-Control",
 								"value": "no-cache",
-								"name": "cache-control",
 								"type": "text"
 							},
 							{
 								"key": "Postman-Token",
 								"value": "<calculated when request is sent>",
-								"name": "postman-token",
 								"type": "text"
 							},
 							{
 								"key": "Host",
 								"value": "<calculated when request is sent>",
-								"name": "host",
 								"type": "text"
 							},
 							{
 								"key": "User-Agent",
 								"value": "PostmanRuntime/7.39.1",
-								"name": "user-agent",
 								"type": "text"
 							},
 							{
 								"key": "Accept",
 								"value": "*/*",
-								"name": "accept",
 								"type": "text"
 							},
 							{
 								"key": "Accept-Encoding",
 								"value": "gzip, deflate, br",
-								"name": "accept-encoding",
 								"type": "text"
 							},
 							{
 								"key": "Connection",
 								"value": "keep-alive",
-								"name": "connection",
 								"type": "text"
 							},
 							{
@@ -3206,12 +3012,9 @@
 							}
 						],
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/filter?walletId=1&type=TOP_UP&timeRange=TODAY&startDate=2024-12-01T00:00:00&endDate=2024-12-31T23:59:59&page=0&size=10&sortBy=transactionDate&order=desc&Authorization=Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgyNjY2NiwiZXhwIjoxNzQzOTEzMDY2fQ.Dver-nM3wruvwcZPHth-WG1-NN7XH_thbIdlBfu7HTc",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/transactions/filter?walletId=1&type=TOP_UP&timeRange=TODAY&startDate=2024-12-01T00:00:00&endDate=2024-12-31T23:59:59&page=0&size=10&sortBy=transactionDate&order=desc&Authorization=Bearer {{authToken}}",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
@@ -3257,7 +3060,7 @@
 								},
 								{
 									"key": "Authorization",
-									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgyNjY2NiwiZXhwIjoxNzQzOTEzMDY2fQ.Dver-nM3wruvwcZPHth-WG1-NN7XH_thbIdlBfu7HTc"
+									"value": "Bearer {{authToken}}"
 								}
 							]
 						}
@@ -3275,12 +3078,9 @@
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/filter?walletId=1&type=TOP_UP&timeRange=TODAY&startDate=2024-12-01T00:00:00&endDate=2024-12-31T23:59:59&page=0&size=10&sortBy=transactionDate&order=desc&Authorization=Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgyNjY2NiwiZXhwIjoxNzQzOTEzMDY2fQ.Dver-nM3wruvwcZPHth-WG1-NN7XH_thbIdlBfu7HTc",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions/filter?walletId=1&type=TOP_UP&timeRange=TODAY&startDate=2024-12-01T00:00:00&endDate=2024-12-31T23:59:59&page=0&size=10&sortBy=transactionDate&order=desc&Authorization=Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzgyNjY2NiwiZXhwIjoxNzQzOTEzMDY2fQ.Dver-nM3wruvwcZPHth-WG1-NN7XH_thbIdlBfu7HTc",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -3408,69 +3208,38 @@
 				},
 				{
 					"name": "Get Transaction By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cache-Control",
-								"value": "no-cache",
-								"name": "cache-control",
-								"type": "text"
-							},
-							{
-								"key": "Postman-Token",
-								"value": "<calculated when request is sent>",
-								"name": "postman-token",
-								"type": "text"
-							},
-							{
-								"key": "Host",
-								"value": "<calculated when request is sent>",
-								"name": "host",
-								"type": "text"
-							},
-							{
-								"key": "User-Agent",
-								"value": "PostmanRuntime/7.39.1",
-								"name": "user-agent",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"name": "accept",
-								"type": "text"
-							},
-							{
-								"key": "Accept-Encoding",
-								"value": "gzip, deflate, br",
-								"name": "accept-encoding",
-								"type": "text"
-							},
-							{
-								"key": "Connection",
-								"value": "keep-alive",
-								"name": "connection",
-								"type": "text"
-							},
-							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlscy5jb20iLCJpYXQiOjE3NDM1OTU0NTYsImV4cCI6MTc0MzY4MTg1Nn0.OMKmi1nccAwyVbuTC92-ITb93dYXNDmX4Ue3nf13XIs",
+								"value": "Bearer {{authToken}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/1",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/transactions/{{transactionId}}",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"transactions",
-								"1"
+								"{{transactionId}}"
 							]
 						}
 					},
@@ -3487,17 +3256,14 @@
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions/{{transactionId}}",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"transactions",
-										"1"
+										"{{transactionId}}"
 									]
 								}
 							},
@@ -3581,22 +3347,19 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTYyNCwiZXhwIjoxNzQ0Mzc2MDI0fQ.AkQgOzf_b1HI-ByZWrZ0gsEvAI__mLAooVakvv7gNWM",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions/12131231231231",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"transactions",
-										"1"
+										"12131231231231"
 									]
 								}
 							},
@@ -3680,22 +3443,19 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MDU2MiwiZXhwIjoxNzQ0Mzc2OTYyfQ.nnZbPFyIS3AnSNcMNPfpoag4Nw3x9dl_zm2z8wyKjME",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions/{{transactionId}}",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"transactions",
-										"1"
+										"{{transactionId}}"
 									]
 								}
 							},
@@ -3776,54 +3536,29 @@
 				},
 				{
 					"name": "Create Transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"pm.environment.set(\"transactionId\", jsonData.data.id);",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
 							{
-								"key": "Cache-Control",
-								"value": "no-cache",
-								"name": "cache-control",
-								"type": "text"
-							},
-							{
-								"key": "Postman-Token",
-								"value": "<calculated when request is sent>",
-								"name": "postman-token",
-								"type": "text"
-							},
-							{
-								"key": "Host",
-								"value": "<calculated when request is sent>",
-								"name": "host",
-								"type": "text"
-							},
-							{
-								"key": "User-Agent",
-								"value": "PostmanRuntime/7.39.1",
-								"name": "user-agent",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"name": "accept",
-								"type": "text"
-							},
-							{
-								"key": "Accept-Encoding",
-								"value": "gzip, deflate, br",
-								"name": "accept-encoding",
-								"type": "text"
-							},
-							{
-								"key": "Connection",
-								"value": "keep-alive",
-								"name": "connection",
-								"type": "text"
-							},
-							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MTE2OCwiZXhwIjoxNzQ0Mzc3NTY4fQ.aWbw_lfF8E1KxbCOBjUVF_j-WyQTif05HeFWM09oDok",
+								"value": "Bearer {{authToken}}",
 								"type": "text"
 							}
 						],
@@ -3837,12 +3572,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/transactions",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
@@ -3858,7 +3590,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MTE2OCwiZXhwIjoxNzQ0Mzc3NTY4fQ.aWbw_lfF8E1KxbCOBjUVF_j-WyQTif05HeFWM09oDok",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
@@ -3872,12 +3604,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -3965,7 +3694,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MTE2OCwiZXhwIjoxNzQ0Mzc3NTY4fQ.aWbw_lfF8E1KxbCOBjUVF_j-WyQTif05HeFWM09oDok",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
@@ -3979,12 +3708,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -4072,7 +3798,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MTE2OCwiZXhwIjoxNzQ0Mzc3NTY4fQ.aWbw_lfF8E1KxbCOBjUVF_j-WyQTif05HeFWM09oDok",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
@@ -4086,12 +3812,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -4176,6 +3899,20 @@
 			"item": [
 				{
 					"name": "Get Summary",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -4183,50 +3920,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Cache-Control",
-								"value": "no-cache",
-								"name": "cache-control",
-								"type": "text"
-							},
-							{
-								"key": "Postman-Token",
-								"value": "<calculated when request is sent>",
-								"name": "postman-token",
-								"type": "text"
-							},
-							{
-								"key": "Host",
-								"value": "<calculated when request is sent>",
-								"name": "host",
-								"type": "text"
-							},
-							{
-								"key": "User-Agent",
-								"value": "PostmanRuntime/7.39.1",
-								"name": "user-agent",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"name": "accept",
-								"type": "text"
-							},
-							{
-								"key": "Accept-Encoding",
-								"value": "gzip, deflate, br",
-								"name": "accept-encoding",
-								"type": "text"
-							},
-							{
-								"key": "Connection",
-								"value": "keep-alive",
-								"name": "connection",
-								"type": "text"
-							},
-							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzY2MDQwNCwiZXhwIjoxNzQzNzQ2ODA0fQ.EUC530QNOr0bYIR9DtZZ8gnXuAq-y9_LmdlqzLOa0Ts",
+								"value": "Bearer {{authToken}}",
 								"type": "text"
 							}
 						],
@@ -4240,18 +3935,15 @@
 							}
 						},
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/summary/1",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/transactions/summary/{{walledId}}",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"transactions",
 								"summary",
-								"1"
+								"{{walledId}}"
 							]
 						}
 					},
@@ -4277,18 +3969,15 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/summary/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions/summary/{{walledId}}",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"transactions",
 										"summary",
-										"1"
+										"{{walledId}}"
 									]
 								}
 							},
@@ -4372,7 +4061,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI4OTYyNCwiZXhwIjoxNzQ0Mzc2MDI0fQ.AkQgOzf_b1HI-ByZWrZ0gsEvAI__mLAooVakvv7gNWM",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
@@ -4386,18 +4075,15 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/summary/1",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions/summary/{{walledId}}",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
 										"transactions",
 										"summary",
-										"1"
+										"{{walledId}}"
 									]
 								}
 							},
@@ -4478,72 +4164,32 @@
 				},
 				{
 					"name": "Financial Graph",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
 							{
-								"key": "Cache-Control",
-								"value": "no-cache",
-								"name": "cache-control",
-								"type": "text"
-							},
-							{
-								"key": "Postman-Token",
-								"value": "<calculated when request is sent>",
-								"name": "postman-token",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"name": "content-type",
-								"type": "text"
-							},
-							{
-								"key": "Content-Length",
-								"value": "<calculated when request is sent>",
-								"name": "content-length",
-								"type": "text"
-							},
-							{
-								"key": "Host",
-								"value": "<calculated when request is sent>",
-								"name": "host",
-								"type": "text"
-							},
-							{
-								"key": "User-Agent",
-								"value": "PostmanRuntime/7.39.1",
-								"name": "user-agent",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"name": "accept",
-								"type": "text"
-							},
-							{
-								"key": "Accept-Encoding",
-								"value": "gzip, deflate, br",
-								"name": "accept-encoding",
-								"type": "text"
-							},
-							{
-								"key": "Connection",
-								"value": "keep-alive",
-								"name": "connection",
-								"type": "text"
-							},
-							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0MzcyOTg0MCwiZXhwIjoxNzQzODE2MjQwfQ.gLJzSCI-DO9HJjat7iiWhcBqOSnK7gauS_gidHPvZto",
+								"value": "Bearer {{authToken}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"view\": \"monthly\",\n  \"year\": 2025,\n  \"walletId\": 1\n}\n",
+							"raw": "{\n  \"view\": \"monthly\",\n  \"year\": 2025,\n  \"walletId\": \"{{walledId}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4551,12 +4197,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/graph",
-							"protocol": "https",
+							"raw": "{{base_url}}/api/transactions/graph",
 							"host": [
-								"kel-1-rakamin-walled-server",
-								"onrender",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
 								"api",
@@ -4579,7 +4222,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"view\": \"monthly\",\n  \"year\": 2025,\n  \"walletId\": 1\n}\n",
+									"raw": "{\n  \"view\": \"monthly\",\n  \"year\": 2025,\n  \"walletId\": \"{{walledId}}\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4587,12 +4230,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/graph",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions/graph",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -4681,13 +4321,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MDU2MiwiZXhwIjoxNzQ0Mzc2OTYyfQ.nnZbPFyIS3AnSNcMNPfpoag4Nw3x9dl_zm2z8wyKjME",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"view\": \"monthly\",\n  \"year\": 2025,\n  \"walletId\": 1\n}\n",
+									"raw": "{\n  \"view\": \"monthly\",\n  \"year\": 2025,\n  \"walletId\": \"{{walledId}}\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4695,12 +4335,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/graph",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions/graph",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -4789,13 +4426,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MDU2MiwiZXhwIjoxNzQ0Mzc2OTYyfQ.nnZbPFyIS3AnSNcMNPfpoag4Nw3x9dl_zm2z8wyKjME",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"view\": \"weekly\",\n  \"month\": \"04\",\n  \"year\": 2025,\n  \"walletId\": 1\n}\n",
+									"raw": "{\n  \"view\": \"weekly\",\n  \"month\": \"04\",\n  \"year\": 2025,\n  \"walletId\": \"{{walledId}}\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4803,12 +4440,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/graph",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions/graph",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
@@ -4897,13 +4531,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBtYWlsLmNvbSIsImlhdCI6MTc0NDI5MDU2MiwiZXhwIjoxNzQ0Mzc2OTYyfQ.nnZbPFyIS3AnSNcMNPfpoag4Nw3x9dl_zm2z8wyKjME",
+										"value": "Bearer {{authToken}}",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"view\": \"quartal\",\n  \"year\": 2025,\n  \"walletId\": 1\n}\n",
+									"raw": "{\n  \"view\": \"quartal\",\n  \"year\": 2025,\n  \"walletId\": \"{{walledId}}\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4911,12 +4545,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://kel-1-rakamin-walled-server.onrender.com/api/transactions/graph",
-									"protocol": "https",
+									"raw": "{{base_url}}/api/transactions/graph",
 									"host": [
-										"kel-1-rakamin-walled-server",
-										"onrender",
-										"com"
+										"{{base_url}}"
 									],
 									"path": [
 										"api",
