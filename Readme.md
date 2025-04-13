@@ -96,6 +96,14 @@ docker run --env-file .env -p 8080:8080 walled-app
 ```
 ````
 
+### 📤 Export Postman
+
+Silakan export Postman Collection dan Environment dari aplikasi Postman kamu:
+
+- **Collection:** export sebagai `api_documentation.jsonn`
+- **Environment:** export sebagai `api_environment.json`
+
+
 ## Pengembang
 
 ```bash
